@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 17:55:07 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/12 19:07:14 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/20 18:23:21 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	recup_map(t_map *map, char *av)
 	return (SUCCESS);
 }
 
-int	chek_file_descriptor(t_map *map, char *av)
+int	check_file_descriptor(t_map *map, char *av)
 {
 	int		ret;
 	int		fd_map;
@@ -102,3 +102,23 @@ int	ft_check_arg(int ac, char **ag)
 	}
 	return (SUCCESS);
 }
+
+int	all_check(int ac, char **av, t_map *map)
+{
+	if (map == NULL || !ft_check_arg(ac, av))
+		return (ERROR);
+	map->len_map = 0;
+	if (!check_file_descriptor(map, av[1]))
+	{
+		ft_printf("ERROR\nCheck map's name or extension.\n");
+		return (ERROR);
+	}
+	if (!recup_map(map, av[1]))
+	{
+		ft_printf("Error\nBad malloc...\n");
+		return (ERROR);
+	}
+	if (!check_map(map))
+		return (ERROR);
+	return (SUCCESS);
+} 

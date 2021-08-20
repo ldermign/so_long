@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 19:06:57 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/17 19:15:30 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/20 17:25:35 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	check_start_end_map(t_map *map)
 	while (map->map[0][j])
 	{
 		if (map->map[0][j] != '1')
-			return (ERROR);
+			return (1);
 		j++;
 	}
 	while (map->map[i])
@@ -32,13 +32,13 @@ int	check_start_end_map(t_map *map)
 	while (map->map[i][j])
 	{
 		if (map->map[i][j] != '1')
-			return (ERROR);
+			return (i + 1);
 		j++;
 	}
-	return (SUCCESS);
+	return (-1);
 }
 
-int	check_wall_around(t_map *map, char **tab, int c)
+int	check_space(t_map *map, char **tab, int c)
 {
 	int	i;
 	int	j;
@@ -65,57 +65,41 @@ int	check_wall_around(t_map *map, char **tab, int c)
 	return (SUCCESS);
 }
 
-int	check_wall_around(char **map, int size_line)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-	{
-		if (map[i][0] != '1' || map[i][size_line - 1] != '1')
-		{
-			ft_printf("Error\nIt's missing a wall line %d.\n", i + 1);
-			return (ERROR);
-		}
-		if (size_line != (int)ft_strlen(map[i]))
-		{
-			ft_printf("Error\nThis is not a rectangle...\n");
-			return (ERROR);
-		}
-		i++;
-	}
-}
-
-int	check_map(t_map *map)
+int	check_around(t_map *map)
 {
 	int	i;
 
 	i = 0;
 	map->size_line = max_line(map->map);
-	if (how_many_player(map->map) != 1)
+	while (map->map[i])
 	{
-		ft_printf("Error\nNot right number of player.\n");
-		return (ERROR);
+		if (map->size_line != (int)ft_strlen(map->map[i]))
+			return (quit(map, "This is not a rectangle...\n", 0, 0));
+		if (map->map[i][0] != '1' || map->map[i][map->size_line - 1] != '1')
+			return (quit(map, "It's missing a wall line ", 2, i + 1));
+		i++;
 	}
-	if (!check_start_end_map(map))
-	{
-		ft_printf("Error\nCheck first or last line.\n");
+	return (SUCCESS);
+}
+
+int	check_map(t_map *map)
+{
+	if (how_many_player_exit_collec(map->map, 'P') != 1)
+		return (quit(map, "Not right number for player.\n", 0, 0));
+	if (check_start_end_map(map) != -1)
+		return (quit(map, "Check line ", 2, check_start_end_map(map)));
+	if (ft_strchr_tab_wrong_cara(map->map) != -1)
+		return (quit(map, "Something's wrong line ", 2,
+			ft_strchr_tab_wrong_cara(map->map)));
+	if (!check_around(map))
 		return (ERROR);
-	}
-	if (!ft_strchr_tab_wrong_cara(map->map))
-	{
-		ft_printf("Something's wrong in the map.\n");
-		return (ERROR);
-	}
-	if (!check_wall_around(map->map, map->size_line))
-		return (ERROR);
-	if (!check_wall_around(map, map->map, '0')
-		|| !check_wall_around(map, map->map, 'C')
-		|| !check_wall_around(map, map->map, 'E')
-		|| !check_wall_around(map, map->map, 'P'))
-	{
-		printf("Error\nIt's missing some wall. Go check that.\n");
-		return (ERROR);
-	}
+	if (!check_space(map, map->map, '0') || !check_space(map, map->map, 'C')
+		|| !check_space(map, map->map, 'E')
+		|| !check_space(map, map->map, 'P'))
+		return (quit(map, "It's missing some wall. Go check that.\n", 0, 0));
+	if (how_many_player_exit_collec(map->map, 'C') < 2)
+		return (quit(map, "Not enough collectible.\n", 0, 0));
+	if (how_many_player_exit_collec(map->map, 'E') < 1)
+		return (quit(map, "Where is your exit ?\n", 0, 0));
 	return (SUCCESS);
 }

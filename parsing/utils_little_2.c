@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:46:52 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/14 15:16:22 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/19 18:30:56 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	ft_is_either(char c)
 	return (c == '0' || c == '1' || c == 'C' || c == 'E' || c == 'P');
 }
 
-int	how_many_player(char **map)
+int	how_many_player_exit_collec(char **map, char c)
 {
 	int	i;
 	int	j;
@@ -31,7 +31,7 @@ int	how_many_player(char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (ft_is_player((int)map[i][j]))
+			if (map[i][j] == c)
 				tmp++;
 			j++;
 		}
@@ -65,10 +65,10 @@ int	ft_strchr_tab_wrong_cara(char **tab)
 		while (tab[i][j])
 		{
 			if (!ft_is_either(tab[i][j]))
-				return (ERROR);
+				return (i + 1);
 			j++;
 		}
 		i++;
 	}
-	return (SUCCESS);
+	return (-1);
 }

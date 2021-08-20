@@ -6,20 +6,21 @@
 #    By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 14:16:35 by ldermign          #+#    #+#              #
-#    Updated: 2021/08/12 19:07:33 by ldermign         ###   ########.fr        #
+#    Updated: 2021/08/18 18:03:39 by ldermign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME	=	so_long
 
-SRCS	=	so_long.c \
-			check_arg.c \
-			check_map.c \
-			utils_little.c \
-			utils_little_2.c \
-			utils_check.c
+SRCS	=	./so_long.c \
+			./parsing/check_arg.c \
+			./parsing/check_map.c \
+			./parsing/utils_little.c \
+			./parsing/utils_little_2.c \
+			./parsing/utils_check.c \
+			./utils/clean_quit.c
 
-INCS	=	-I ./ -I ./libft/includes/ -I ./mlx/
+INCS	=	-I ./includes/ -I ./libft/includes/ -I ./mlx/
 
 OBJS	=	${SRCS:.c=.o}
 
