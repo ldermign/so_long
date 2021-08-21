@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 15:46:40 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/20 18:24:21 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/21 16:12:11 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,19 @@ int		close_cross()
 
 void	ft_init_img(t_map *map, t_mlx *img)
 {
-	
-	img->width = map->size_line * 32;
-	img->height = map->len_map * 32;
+	int	max_w;
+	int	max_h;
+
+	img->width = map->size_line;
+	img->height = map->len_map;
+	mlx_get_screen_size(img->mlx, &max_w, &max_h);
+	if (img->width > max_w || img->width > max_h)
+	{
+		img->width = max_w;
+		img->height = max_h;
+	}
+	printf("maxW = %d, maxH = %d\n", max_w, max_h);
+	printf("width = %d, height = %d\n", img->width, img->height);
 }
 
 int	main(int ac, char **av)
