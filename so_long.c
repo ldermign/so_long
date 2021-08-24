@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 15:46:40 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/21 16:12:11 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/24 12:11:14 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,16 +53,23 @@ void	ft_init_img(t_map *map, t_mlx *img)
 	int	max_w;
 	int	max_h;
 
-	img->width = map->size_line;
-	img->height = map->len_map;
+	img->width = map->size_line * 32;
+	img->height = map->len_map * 32;
+	img->multp = 32;
 	mlx_get_screen_size(img->mlx, &max_w, &max_h);
-	if (img->width > max_w || img->width > max_h)
+	if (img->width > max_w || img->height > max_h)
 	{
-		img->width = max_w;
-		img->height = max_h;
+		img->width = map->size_line * 16;
+		img->height = map->len_map * 16;
+		img->multp = 16;
 	}
-	printf("maxW = %d, maxH = %d\n", max_w, max_h);
-	printf("width = %d, height = %d\n", img->width, img->height);
+	if (img->width > max_w || img->height > max_h)
+	{
+		img->width = map->size_line;
+		img->height = map->len_map;
+		img->multp = 1;
+	}
+	// ajouter fonction qui check si map plus grande que le max
 }
 
 int	main(int ac, char **av)
