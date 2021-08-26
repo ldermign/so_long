@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 15:15:04 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/24 11:56:54 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/26 12:19:11 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,6 @@ typedef struct  s_data {
 	int			endian;
 	int			width;		// largeur
 	int			height;		// hauteur
-	int 		x;
-	int 		y;
 	int			multp;
 }	t_mlx;
 
