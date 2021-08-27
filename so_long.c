@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 15:46:40 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/25 16:59:31 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/27 23:14:41 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,20 @@ void	ft_init_img(t_map *map, t_mlx *img)
 		img->multp = 1;
 	}
 	// ajouter fonction qui check si map plus grande que le max
+	// addapter en fonction
 }
 
 void	get_map_xpm(t_map *map, t_mlx *img)
 {
 	(void)map;
 	(void)img;
+	int	width;
+	int	height;
+
+	width = 15;
+	height = 50;
+	mlx_xpm_file_to_image(img->mlx, COLEC, &width, &height);
+	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 }
 
 int	main(int ac, char **av)
