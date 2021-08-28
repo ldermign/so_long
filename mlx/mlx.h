@@ -81,6 +81,8 @@ char	*mlx_get_data_addr(void *img_ptr, int *bits_per_pixel,
 */
 int	mlx_put_image_to_window(void *mlx_ptr, void *win_ptr, void *img_ptr,
 				int x, int y);
+// x et y = placement sur l'image, coordonnees
+// renvoit un pointeur sur void qui reference la nouvelle image avec la texture affichee
 unsigned int	mlx_get_color_value(void *mlx_ptr, int color);
 
 

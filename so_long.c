@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 15:46:40 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/27 23:14:41 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/28 21:47:32 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,14 +82,15 @@ void	ft_init_img(t_map *map, t_mlx *img)
 void	get_map_xpm(t_map *map, t_mlx *img)
 {
 	(void)map;
-	(void)img;
-	int	width;
-	int	height;
+	void	*wall;
+	int		width;
+	int		height;
 
-	width = 15;
-	height = 50;
-	mlx_xpm_file_to_image(img->mlx, COLEC, &width, &height);
-	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
+	width = 0;
+	height = 0;
+	printf("Multiplicateur = %d\n", img->multp);
+	wall = mlx_xpm_file_to_image(img->mlx, WALL, &width, &height);
+	mlx_put_image_to_window(img->mlx, img->win, wall, 0, 0);
 }
 
 int	main(int ac, char **av)
