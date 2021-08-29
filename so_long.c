@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 15:46:40 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/29 19:45:10 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/29 23:02:42 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,15 +81,31 @@ void	ft_init_img(t_map *map, t_mlx *img)
 
 void	get_map_xpm(t_map *map, t_mlx *img)
 {
-	(void)map;
+	int	i = 0, j = 0;
 	void	*wall;
+	int		ret;
 	int		width;
 	int		height;
 
+	ret = 0;
 	width = 0;
 	height = 0;
-	wall = mlx_xpm_file_to_image(img->mlx, WALL, &width, &height);
-	mlx_put_image_to_window(img->mlx, img->win, wall, 0, 0);
+	while (map->map[i])
+	{
+		j = 0;
+		ret = 0;
+		while (map->map[i][j])
+		{
+			if (map->map[i][j] == '1')
+			{
+				wall = mlx_xpm_file_to_image(img->mlx, WALL, &width, &height);
+				img->addr = mlx_get_data_addr(s()->img->img, &s()->img->bpp, &s()->img->size_line, &s()->img->endian);
+				mlx_put_image_to_window(img->mlx, img->win, wall, i * 32, ret);
+			}
+			j++;
+		}
+		i++;
+	}
 }
 
 void	utils(t_map *map, t_mlx *img)

@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 14:14:37 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/29 15:24:30 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/29 22:49:00 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@
 # include "structures.h"
 # define ERROR -1
 # define SUCCESS 1
-# define WALL "./textures/redbrick.xpm"
+# define WALL "./textures/bricks_32.xpm"
 # define COLEC "./textures/stars.xpm"
 
 /*
