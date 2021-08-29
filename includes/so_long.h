@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 14:14:37 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/28 12:02:27 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/29 15:24:30 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,6 +70,7 @@ int		quit(t_map *map, char *str_err, int i, int place);
 #define KWHT  "\x1B[0;37m" // BLANC
 #define KGRE  "\x1b[1;30m" // GRIS
 #define CLR_COLOR "\x1b[0m" // CLEAR COLOR
+void	afficher_map(t_map *map);
 #include <libc.h>
 
 #endif

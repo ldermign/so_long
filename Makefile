@@ -6,7 +6,7 @@
 #    By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 14:16:35 by ldermign          #+#    #+#              #
-#    Updated: 2021/08/26 14:42:02 by ldermign         ###   ########.fr        #
+#    Updated: 2021/08/29 15:24:48 by ldermign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,8 @@ SRCS	=	./so_long.c \
 			./parsing/utils_little.c \
 			./parsing/utils_little_2.c \
 			./parsing/utils_check.c \
-			./utils/clean_quit.c
+			./utils/clean_quit.c \
+			./supprimer.c
 
 INCS	=	-I ./includes/ -I ./libft/includes/ -I ./mlx/
 

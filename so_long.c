@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 15:46:40 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/28 21:47:32 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/29 19:45:10 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,9 +88,15 @@ void	get_map_xpm(t_map *map, t_mlx *img)
 
 	width = 0;
 	height = 0;
-	printf("Multiplicateur = %d\n", img->multp);
 	wall = mlx_xpm_file_to_image(img->mlx, WALL, &width, &height);
 	mlx_put_image_to_window(img->mlx, img->win, wall, 0, 0);
+}
+
+void	utils(t_map *map, t_mlx *img)
+{
+	afficher_map(map);
+	printf("Multiplicateur = %d\n", img->multp);
+	printf("img->width = %d --> %d\nimg->height = %d --> %d\n", img->width / img->multp, img->width, img->height / img->multp, img->height);
 }
 
 int	main(int ac, char **av)
@@ -103,7 +109,9 @@ int	main(int ac, char **av)
 	s()->img->win = mlx_new_window(s()->img->mlx, s()->img->width, s()->img->height, "So_long");
 	s()->img->img = mlx_new_image(s()->img->mlx, s()->img->width, s()->img->height);
 	s()->img->addr = mlx_get_data_addr(s()->img->img, &s()->img->bpp, &s()->img->size_line, &s()->img->endian);
-	
+
+	utils(s()->map, s()->img);
+
 	get_map_xpm(s()->map, s()->img);
 
 	mlx_hook(s()->img->win, 2, 1L<<0, &key_press, (void *)0);

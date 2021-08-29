@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 19:06:57 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/21 16:10:38 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/29 19:34:00 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,21 +42,22 @@ int	check_space(t_map *map, char **tab, int c)
 {
 	int	i;
 	int	j;
+	int	ret;
 
 	i = 1;
 	while (tab[i])
 	{
 		if (ft_int_strchr(tab[i], c))
 		{
-			j = 0;
+			j = ft_pos_strchr(tab[i], c) + ret;
 			while (j < map->len_map - 1)
 			{
 				if (tab[i][j] == c && ((i != 0 && tab[i - 1][j] == ' ')
 					|| (j != 0 && tab[i][j - 1] == ' ') || tab[i][j + 1] == ' '
 					|| tab[i + 1][j] == ' '))
 					return (ERROR);
-				j++;
 			}
+			ret = j;
 		}
 		i++;
 		if (i == size_tab_char(tab) - 1)
@@ -90,7 +91,7 @@ int	check_map(t_map *map)
 		return (quit(map, "Check line ", 2, check_start_end_map(map)));
 	if (ft_strchr_tab_wrong_cara(map->map) != -1)
 		return (quit(map, "Something's wrong line ", 2,
-			ft_strchr_tab_wrong_cara(map->map)));
+				ft_strchr_tab_wrong_cara(map->map)));
 	if (!check_around(map))
 		return (ERROR);
 	if (!check_space(map, map->map, '0') || !check_space(map, map->map, 'C')
