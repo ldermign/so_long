@@ -6,7 +6,7 @@
 #    By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 14:16:35 by ldermign          #+#    #+#              #
-#    Updated: 2021/08/29 15:24:48 by ldermign         ###   ########.fr        #
+#    Updated: 2021/08/30 19:21:12 by ldermign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,7 +36,7 @@ RM		=	rm -rf
 all:		${NAME}
 
 ${NAME}:	${OBJS}
-			${MAKE} -C libft
+			${MAKE} -C libft ${INCS}
 			${CC} ${CFLAGS} ${INCS} -I ${MLX} -Lmlx -lmlx -framework OpenGL -framework AppKit $^ -o $@ ./libft/libft.a
 
 .c.o:

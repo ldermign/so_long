@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 15:46:40 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/29 23:02:42 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/30 19:44:14 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,27 +83,25 @@ void	get_map_xpm(t_map *map, t_mlx *img)
 {
 	int	i = 0, j = 0;
 	void	*wall;
-	int		ret;
 	int		width;
 	int		height;
 
-	ret = 0;
 	width = 0;
 	height = 0;
+	wall = mlx_xpm_file_to_image(img->mlx, FLOOR, &width, &height);
+	// mlx_put_image_to_window(img->mlx, img->win, wall, width, height); DECONE ICI
 	while (map->map[i])
 	{
 		j = 0;
-		ret = 0;
 		while (map->map[i][j])
 		{
 			if (map->map[i][j] == '1')
 			{
 				wall = mlx_xpm_file_to_image(img->mlx, WALL, &width, &height);
-				img->addr = mlx_get_data_addr(s()->img->img, &s()->img->bpp, &s()->img->size_line, &s()->img->endian);
-				mlx_put_image_to_window(img->mlx, img->win, wall, i * 32, ret);
+				mlx_put_image_to_window(img->mlx, img->win, wall, j * img->multp, i * img->multp);
 			}
 			j++;
-		}
+		}	
 		i++;
 	}
 }

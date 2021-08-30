@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 15:15:04 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/26 12:19:11 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/30 18:18:02 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,8 @@ typedef struct s_map
 	int		ret;
 }	t_map;
 
-typedef struct  s_data {
+typedef struct  s_data
+{
 	void		*mlx;
 	void		*win;
 	void		*img;
