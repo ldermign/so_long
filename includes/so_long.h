@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 14:14:37 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/30 19:40:01 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/31 19:40:24 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@
 # define SUCCESS 1
 # define WALL "./textures/brick_32.xpm"
 # define COLEC "./textures/stars.xpm"
-# define FLOOR "./textures/floor.xpm"
+# define FLOOR "./textures/floor_600.xpm"
 
 /*
 **	CHECK

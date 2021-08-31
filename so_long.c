@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 15:46:40 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/30 19:44:14 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/08/31 19:47:38 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,32 @@ void	ft_init_img(t_map *map, t_mlx *img)
 	// addapter en fonction
 }
 
+void	get_background(t_mlx *img)
+{
+	void	*floor;
+	int		ret;
+	int		width;
+	int		height;
+
+	ret = 0;
+	floor = mlx_xpm_file_to_image(img->mlx, FLOOR, &width, &height);
+	mlx_put_image_to_window(img->mlx, img->win, floor, 0, 0);
+	while (img->width >= 600 || img->width >= 600)
+	{
+		width += 600;
+		height += 600;
+		floor = mlx_xpm_file_to_image(img->mlx, FLOOR, &width, &height);
+		mlx_put_image_to_window(img->mlx, img->win, floor, 0, 0);
+		ret++;
+	}
+	while (ret > 0)
+	{
+		img->width *= img->multp;
+		img->height *= img->multp;
+		ret--;
+	}
+}
+
 void	get_map_xpm(t_map *map, t_mlx *img)
 {
 	int	i = 0, j = 0;
@@ -89,7 +115,8 @@ void	get_map_xpm(t_map *map, t_mlx *img)
 	width = 0;
 	height = 0;
 	wall = mlx_xpm_file_to_image(img->mlx, FLOOR, &width, &height);
-	// mlx_put_image_to_window(img->mlx, img->win, wall, width, height); DECONE ICI
+	mlx_put_image_to_window(img->mlx, img->win, wall, 0, 0);
+	// get_background(img);
 	while (map->map[i])
 	{
 		j = 0;
