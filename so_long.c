@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 15:46:40 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/31 19:47:38 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/01 16:34:40 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,9 @@ t_s	*s(void)
 			return (NULL);
 		stc->img = calloc(1, sizeof(t_mlx));
 		if (!stc->img)
+			return (NULL);
+		stc->txt = calloc(1, sizeof(t_text));
+		if (!stc->txt)
 			return (NULL);
 	}
 	return (stc);
@@ -79,33 +82,60 @@ void	ft_init_img(t_map *map, t_mlx *img)
 	// addapter en fonction
 }
 
-void	get_background(t_mlx *img)
-{
-	void	*floor;
-	int		ret;
-	int		width;
-	int		height;
 
-	ret = 0;
-	floor = mlx_xpm_file_to_image(img->mlx, FLOOR, &width, &height);
-	mlx_put_image_to_window(img->mlx, img->win, floor, 0, 0);
-	while (img->width >= 600 || img->width >= 600)
-	{
-		width += 600;
-		height += 600;
-		floor = mlx_xpm_file_to_image(img->mlx, FLOOR, &width, &height);
-		mlx_put_image_to_window(img->mlx, img->win, floor, 0, 0);
-		ret++;
+
+void	get_textures(t_text *txt, int multp)
+{
+	const t_recup textures[] = {
+		{}
 	}
-	while (ret > 0)
+	if (multp == 64)
 	{
-		img->width *= img->multp;
-		img->height *= img->multp;
-		ret--;
+		txt->floor = ft_strdup("./textures/floor_600.xpm");
+		txt->wall = ft_strdup("./textures/wall_64.xpm");
+		txt->coll = ft_strdup("./textures/coll_64.xpm");
+		txt->exit = ft_strdup("./textures/exit_64.xpm");
+		txt->plr_N = ft_strdup("./textures/plr_N_64.xpm");
+		txt->plr_S = ft_strdup("./textures/plr_S_64.xpm");
+		txt->plr_E = ft_strdup("./textures/plr_E_64.xpm");
+		txt->plr_W = ft_strdup("./textures/plr_W_64.xpm");
+	}
+	else if (multp == 32)
+	{
+		txt->floor = ft_strdup("./textures/floor_600.xpm");
+		txt->wall = ft_strdup("./textures/wall_32.xpm");
+		txt->coll = ft_strdup("./textures/coll_32.xpm");
+		txt->exit = ft_strdup("./textures/exit_32.xpm");
+		txt->plr_N = ft_strdup("./textures/plr_N_32.xpm");
+		txt->plr_S = ft_strdup("./textures/plr_S_32.xpm");
+		txt->plr_E = ft_strdup("./textures/plr_E_32.xpm");
+		txt->plr_W = ft_strdup("./textures/plr_W_32.xpm");
+	}
+	else if (multp == 16)
+	{
+		txt->floor = ft_strdup("./textures/floor_600.xpm");
+		txt->wall = ft_strdup("./textures/wall_16.xpm");
+		txt->coll = ft_strdup("./textures/wall_16.xpm");
+		txt->exit = ft_strdup("./textures/exit_16.xpm");
+		txt->plr_N = ft_strdup("./textures/plr_N_16.xpm");
+		txt->plr_S = ft_strdup("./textures/plr_S_16.xpm");
+		txt->plr_E = ft_strdup("./textures/plr_E_16.xpm");
+		txt->plr_W = ft_strdup("./textures/plr_W_16.xpm");
+	}
+	else if (multp == 8)
+	{
+		txt->floor = ft_strdup("./textures/floor_8.xpm");
+		txt->wall = ft_strdup("./textures/wall_8.xpm");
+		txt->coll = ft_strdup("./textures/coll_8.xpm");
+		txt->exit = ft_strdup("./textures/exit_8.xpm");
+		txt->plr_N = ft_strdup("./textures/plr_N_8.xpm");
+		txt->plr_S = ft_strdup("./textures/plr_S_8.xpm");
+		txt->plr_E = ft_strdup("./textures/plr_E_8.xpm");
+		txt->plr_W = ft_strdup("./textures/plr_W_8.xpm");
 	}
 }
 
-void	get_map_xpm(t_map *map, t_mlx *img)
+void	get_map_xpm(t_map *map, t_mlx *img, t_text *txt)
 {
 	int	i = 0, j = 0;
 	void	*wall;
@@ -114,9 +144,9 @@ void	get_map_xpm(t_map *map, t_mlx *img)
 
 	width = 0;
 	height = 0;
-	wall = mlx_xpm_file_to_image(img->mlx, FLOOR, &width, &height);
+	get_textures(txt, img->multp);
+	wall = mlx_xpm_file_to_image(img->mlx, txt->floor, &width, &height);
 	mlx_put_image_to_window(img->mlx, img->win, wall, 0, 0);
-	// get_background(img);
 	while (map->map[i])
 	{
 		j = 0;
@@ -124,7 +154,7 @@ void	get_map_xpm(t_map *map, t_mlx *img)
 		{
 			if (map->map[i][j] == '1')
 			{
-				wall = mlx_xpm_file_to_image(img->mlx, WALL, &width, &height);
+				wall = mlx_xpm_file_to_image(img->mlx, txt->wall, &width, &height);
 				mlx_put_image_to_window(img->mlx, img->win, wall, j * img->multp, i * img->multp);
 			}
 			j++;
@@ -153,7 +183,7 @@ int	main(int ac, char **av)
 
 	utils(s()->map, s()->img);
 
-	get_map_xpm(s()->map, s()->img);
+	get_map_xpm(s()->map, s()->img, s()->txt);
 
 	mlx_hook(s()->img->win, 2, 1L<<0, &key_press, (void *)0);
 	mlx_hook(s()->img->win, 17, 1L<<0, &close_cross, (void *)0);
@@ -163,3 +193,6 @@ int	main(int ac, char **av)
 	return (SUCCESS);
 }
 
+
+
+/// Faire un x64 ?????
