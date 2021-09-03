@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 14:14:37 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/01 15:27:47 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/03 15:05:31 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,14 @@
 # include "structures.h"
 # define ERROR -1
 # define SUCCESS 1
+# define FLOOR "./textures/floor.xpm"
+# define WALL "./textures/wall.xpm"
+# define COLL
+# define EXIT
+# define PLR_N
+# define PLR_S
+# define PLR_E
+# define PLR_W
 
 /*
 **	CHECK
