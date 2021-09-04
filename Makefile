@@ -6,7 +6,7 @@
 #    By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 14:16:35 by ldermign          #+#    #+#              #
-#    Updated: 2021/08/30 19:21:12 by ldermign         ###   ########.fr        #
+#    Updated: 2021/09/04 11:59:51 by ldermign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,6 @@ SRCS	=	./so_long.c \
 			./parsing/check_map.c \
 			./parsing/utils_little.c \
 			./parsing/utils_little_2.c \
-			./parsing/utils_check.c \
 			./utils/clean_quit.c \
 			./supprimer.c
 

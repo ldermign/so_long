@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 15:46:40 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/03 15:28:47 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/04 11:55:20 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ int		close_cross()
 
 void	ft_init_img(t_map *map, t_mlx *img)
 {
-	printf("w = %d, h = %d\n", img->width, img->height);
+	// printf("w = %d, h = %d\n", img->width, img->height);
 	img->width = map->size_line * 32;
 	img->height = map->len_map * 32;
 }
@@ -105,30 +105,47 @@ void	get_wall(t_mlx *img, t_map *map, void *wall)
 				mlx_put_image_to_window(img->mlx, img->win, wall, j * 32, i * 32);
 			j++;
 		}
-		// return ;
 		i++;
 	}
 }
 
 void	get_map_xpm(t_map *map, t_mlx *img)
 {
+	int	i;
+	int	j;
 	void	*text;
 
+	i = 0;
+	j = 0;
 	text = NULL;
-	get_floor(img, map, text);
-	get_wall(img, map, text);
+	(void)map;
+	// get_floor(img, map, text);
+	// get_wall(img, map, text);
+	while (map->map[i])
+	{
+		j = 0;
+		while (map->map[i][j])
+		{
+			// ecrire directement dans l'image avec mlx_pixel_put ?? int	mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
+			// recuperer la nouvelle addresse de l'image sur laquelle on a dessine 
+			mlx_pixel_put();
+			img->addr = mlx_get_data_addr(img->img, &img->bpp, &img->size_line, &img->endian);
+			j++;
+		}
+		i++;
+	}
+	mlx_put_image_to_window(img->mlx, img->win, img->addr, 0, 0);
 }
 
-void	utils(t_map *map, t_mlx *img)
-{
-	afficher_map(map);
-	printf("img->width = %d --> %d\nimg->height = %d --> %d\n", img->width / 32, img->width, img->height / 32, img->height);
-}
+// void	utils(t_map *map, t_mlx *img)
+// {
+// 	afficher_map(map);
+// 	printf("img->width = %d --> %d\nimg->height = %d --> %d\n", img->width / 32, img->width, img->height / 32, img->height);
+// }
 
 int	main(int ac, char **av)
 {
-	if (!all_check(ac, av, s()->map))
-		return (ERROR);
+	all_check(ac, av, s()->map);
 	ft_init_img(s()->map, s()->img);
 
 	s()->img->mlx = mlx_init();
@@ -136,7 +153,8 @@ int	main(int ac, char **av)
 	s()->img->img = mlx_new_image(s()->img->mlx, s()->img->width, s()->img->height);
 	s()->img->addr = mlx_get_data_addr(s()->img->img, &s()->img->bpp, &s()->img->size_line, &s()->img->endian);
 
-	utils(s()->map, s()->img);
+	// utils(s()->map, s()->img);
+	afficher_map(s()->map);
 
 	get_map_xpm(s()->map, s()->img);
 

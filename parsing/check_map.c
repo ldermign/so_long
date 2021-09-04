@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 19:06:57 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/29 19:34:00 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/04 09:53:43 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ int	check_around(t_map *map)
 
 int	check_map(t_map *map)
 {
+	if (size_tab_char(map->map) <= 2)
+		return (quit(map, "Map too small.n", 0, 0));
 	if (how_many_player_exit_collec(map->map, 'P') != 1)
 		return (quit(map, "Not right number for player.\n", 0, 0));
 	if (check_start_end_map(map) != -1)

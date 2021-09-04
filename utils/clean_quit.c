@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 15:19:17 by ldermign          #+#    #+#             */
-/*   Updated: 2021/08/18 18:05:56 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/04 10:06:49 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,5 +39,5 @@ int	quit(t_map *map, char *str_err, int i, int place)
 		ft_print_map(map->map, place - 1);
 	ft_free_tab(map->map);
 	free(map);
-	return (ERROR);
+	exit (0);
 }
