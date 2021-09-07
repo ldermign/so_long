@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 15:46:40 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/06 13:27:09 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/07 15:33:30 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -110,40 +110,43 @@ void	get_wall(t_mlx *img, t_map *map, void *wall)
 }
 
 void	get_map_xpm(t_mlx *img)
-{(void)img;
-	int		i;
-	int		j;
-	t_mlx	*text;
+{
+	int		x;
+	int		y;
+	int		*color;
+	t_text	*text;
 
-	i = 0;
-	j = 0;
+	y = 0;
+	color = 0;
 	text = ft_calloc(1, sizeof(t_mlx));
-	// text->img = mlx_new_image(text->mlx, text->width, text->height);
-	text->win = mlx_xpm_file_to_image(text->mlx, FLOOR, &text->width, &text->height);
-	// if (text->img == NULL)
-	// 	quit(s()->map, "Something's wrong with the floor...\n", 0, 0);
-	// text->addr = mlx_get_data_addr(text->img, &text->bpp, &text->size_line, &text->endian);
-	
-	// while (map->map[i])
-	// {
-	// 	j = 0;
-	// 	while (map->map[i][j])
-	// 	{
-	// 		// ecrire directement dans l'image avec mlx_pixel_put ?? int	mlx_pixel_put(void *mlx_ptr, void *win_ptr, int x, int y, int color);
-	// 		// recuperer la nouvelle addresse de l'image sur laquelle on a dessine 
-	// 		mlx_pixel_put();
-	// 		j++;
-	// 	}
-	// 	i++;
-	// }
-	// mlx_put_image_to_window(img->mlx, img->win, img->addr, 0, 0);
+	text->mlx = mlx_init();
+	text->img = mlx_xpm_file_to_image(text->mlx, FLOOR, &text->width, &text->height);
+	if (text->img == NULL)
+		quit(s()->map, "Something's wrong with the floor...\n", 0, 0);
+	text->text = (int *)mlx_get_data_addr(text->img, &text->bpp, &text->line, &text->endian);
+	while (y <= img->height)
+	{
+		x = 0;
+		text->x = 0;
+		while (x <= img->width)
+		{
+			// color = (int *)mlx_get_data_addr(text->img, &text->bpp, &text->size_line, &text->endian);
+			// mlx_pixel_put(img->mlx, img->win, x, y, *color);
+			if (text->x == 32)
+				text->x = 0;
+			color = &(text->text[y * 32 + x]);
+			mlx_pixel_put(img->mlx, img->win, x, y, *color);
+			printf("text->x = %d, x = %d\n", text->x, x);
+			text->x++;
+			x++;
+		}
+		text->y++;
+		y++;
+	}
+	//mlx destroy img
 }
 
-// void	utils(t_map *map, t_mlx *img)
-// {
-// 	afficher_map(map);
-// 	printf("img->width = %d --> %d\nimg->height = %d --> %d\n", img->width / 32, img->width, img->height / 32, img->height);
-// }
+// count_h * WIN_WIDTH + count_w
 
 int	main(int ac, char **av)
 {
@@ -155,7 +158,6 @@ int	main(int ac, char **av)
 	s()->img->img = mlx_new_image(s()->img->mlx, s()->img->width, s()->img->height);
 	s()->img->addr = mlx_get_data_addr(s()->img->img, &s()->img->bpp, &s()->img->size_line, &s()->img->endian);
 
-	// utils(s()->map, s()->img);
 	afficher_map(s()->map);
 
 	get_map_xpm(s()->img);
@@ -167,7 +169,3 @@ int	main(int ac, char **av)
 
 	return (SUCCESS);
 }
-
-
-
-/// Faire un x64 ?????
