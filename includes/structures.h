@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 15:15:04 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/07 15:20:44 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/08 11:02:15 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,20 +36,6 @@ typedef struct  s_data
 	int		width;		// largeur
 	int		height;		// hauteur
 }	t_mlx;
-
-typedef struct	s_texture
-{
-	void	*mlx;
-	void	*img;
-	int		*text;
-	int		bpp;
-	int		line;
-	int		endian;
-	int		width;
-	int		height;
-	int		x;
-	int		y;
-}	t_text;
 
 typedef struct  s_structure {
 	t_map	*map;

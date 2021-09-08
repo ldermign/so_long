@@ -6,11 +6,19 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 15:46:40 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/07 15:33:30 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/08 16:09:57 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	my_mlx_pixel_put(t_mlx *data, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = data->addr + (y * data->size_line + x * (data->bpp / 8));
+	*(unsigned int*)dst = color;
+}
 
 t_s	*s(void)
 {
@@ -55,98 +63,78 @@ void	ft_init_img(t_map *map, t_mlx *img)
 	img->height = map->len_map * 32;
 }
 
-void	get_floor(t_mlx *img, t_map *map, void *floor)
+void	put_floor_on_img(t_mlx *img, int **color)
 {
 	int	i;
 	int	j;
-	int	width;
-	int	height;
+	int	x;
+	int	y;
 
 	i = 0;
-	j = 0;
-	width = 0;
-	height = 0;
-	floor = mlx_xpm_file_to_image(img->mlx, FLOOR, &width, &height);
-	write(1, "ICI\n", 4);
-	printf("%d\n", (int)ft_strlen(map->map[i]));
-	// printf("%d\n", ft_strlen());
-	while (map->map[i])
+	y = 0;
+	while (y <= img->width)
 	{
+		x = 0;
 		j = 0;
-		// if (i == ())
-		while (map->map[i][j])
+		while (x <= img->height)
 		{
-			// printf("w = %d, h = %d\n", width, height);
-			// printf("i = [%d], j * 32 = %d, i * 32 = %d\n",i,  j * 32, i * 32);
-			mlx_put_image_to_window(img->mlx, img->win, floor, j * 32, i * 32);
+			mlx_pixel_put(img->mlx, img->win, y, x, color[i][j]);
+			// my_mlx_pixel_put(img, x, y, color[i][j]);
 			j++;
+			if (j == 32)
+				j = 0;
+			x++;
 		}
 		i++;
+		if (i == 32)
+			i = 0;
+		y++;
 	}
 }
 
-void	get_wall(t_mlx *img, t_map *map, void *wall)
+int	**get_color(t_mlx *txt)
 {
 	int	i;
 	int	j;
-	int	width;
-	int	height;
+	int	**tab;
 
 	i = 0;
-	width = 0;
-	height = 0;
-	wall = mlx_xpm_file_to_image(img->mlx, WALL, &width, &height);
-	while (map->map[i])
+	txt->size_line /= 4;
+	tab = malloc(sizeof(int *) * 32);
+	if (tab == NULL)
+		quit(s()->map, "Something's wrong with malloc.\n", 0, 0);
+	while (i < 32)
 	{
 		j = 0;
-		while (map->map[i][j])
+		tab[i] = malloc(sizeof(int) * 32);
+		if (tab[i] == NULL)
+			quit(s()->map, "Something's wrong with malloc.\n", 0, 0);
+		while (j < 32)
 		{
-			if (map->map[i][j] == '1')
-				mlx_put_image_to_window(img->mlx, img->win, wall, j * 32, i * 32);
+			tab[i][j] = txt->text[j * txt->size_line + i];
 			j++;
 		}
 		i++;
 	}
+	return (tab);
 }
 
 void	get_map_xpm(t_mlx *img)
 {
-	int		x;
-	int		y;
-	int		*color;
-	t_text	*text;
+	(void)img;
+	int		**color;
+	t_mlx	*txt;
 
-	y = 0;
-	color = 0;
-	text = ft_calloc(1, sizeof(t_mlx));
-	text->mlx = mlx_init();
-	text->img = mlx_xpm_file_to_image(text->mlx, FLOOR, &text->width, &text->height);
-	if (text->img == NULL)
-		quit(s()->map, "Something's wrong with the floor...\n", 0, 0);
-	text->text = (int *)mlx_get_data_addr(text->img, &text->bpp, &text->line, &text->endian);
-	while (y <= img->height)
-	{
-		x = 0;
-		text->x = 0;
-		while (x <= img->width)
-		{
-			// color = (int *)mlx_get_data_addr(text->img, &text->bpp, &text->size_line, &text->endian);
-			// mlx_pixel_put(img->mlx, img->win, x, y, *color);
-			if (text->x == 32)
-				text->x = 0;
-			color = &(text->text[y * 32 + x]);
-			mlx_pixel_put(img->mlx, img->win, x, y, *color);
-			printf("text->x = %d, x = %d\n", text->x, x);
-			text->x++;
-			x++;
-		}
-		text->y++;
-		y++;
-	}
-	//mlx destroy img
+	txt = ft_calloc(1, sizeof(t_mlx));
+	if (txt == NULL)
+		quit(s()->map, "Something's wrong with malloc.\n", 0, 0);
+	txt->mlx = mlx_init();
+	txt->img = mlx_xpm_file_to_image(txt->mlx, FLOOR, &txt->width, &txt->height);
+	txt->text = (int *)mlx_get_data_addr(txt->img, &txt->bpp, &txt->size_line, &txt->endian);
+	txt->addr = mlx_get_data_addr(txt->img, &txt->bpp, &txt->size_line, &txt->endian);
+	color = get_color(txt);
+	put_floor_on_img(img, color);
 }
-
-// count_h * WIN_WIDTH + count_w
 
 int	main(int ac, char **av)
 {
