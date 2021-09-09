@@ -6,7 +6,7 @@
 #    By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 14:16:35 by ldermign          #+#    #+#              #
-#    Updated: 2021/09/07 13:26:42 by ldermign         ###   ########.fr        #
+#    Updated: 2021/09/09 14:59:08 by ldermign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,11 @@ SRCS	=	./so_long.c \
 			./parsing/check_map.c \
 			./parsing/utils_little.c \
 			./parsing/utils_little_2.c \
+			./draw/get_map.c \
+			./draw/get_map_2.c \
 			./utils/clean_quit.c \
+			./utils/utils_get_colors.c \
+			./utils/utils_draw.c \
 			./supprimer.c
 
 INCS	=	-I ./includes/ -I ./libft/includes/ -I ./mlx/

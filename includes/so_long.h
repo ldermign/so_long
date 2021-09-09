@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 14:14:37 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/08 10:03:38 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/09 14:58:53 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,13 @@ int		all_check(int ac, char **av, t_map *map);
 int		check_map(t_map *map);
 
 /*
+**  DRAW
+*/
+
+void	get_map_xpm(t_mlx *img);
+void    create_texture(t_mlx *txt, char *path_to_text);
+
+/*
 **	UTILS CHECK
 */
 
@@ -58,10 +65,21 @@ int		size_tab_char(char **tab);
 int		ft_strchr_tab_wrong_cara(char **tab);
 
 /*
-**	UTILS
+**	UTILS COLOR AND FREE
 */
 
+int	    create_trgb(int t, int r, int g, int b);
+int	    get_t(int trgb);
+int	    get_r(int trgb);
+int	    get_g(int trgb);
+int	    get_b(int trgb);
 int		quit(t_map *map, char *str_err, int i, int place);
+
+/*
+**  UTILS DRAW
+*/
+
+void	put_pixel_on_img(t_mlx *img, int x, int y, int color);
 
 /*
 **	SUPPRIMER
