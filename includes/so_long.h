@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 14:14:37 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/09 14:58:53 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/10 10:45:51 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int		check_map(t_map *map);
 **  DRAW
 */
 
-void	get_map_xpm(t_mlx *img);
-void    create_texture(t_mlx *txt, char *path_to_text);
+void	get_map_xpm(t_mlx *img, t_map *map);
+int		**create_texture(t_mlx *txt, char *path_to_text);
 
 /*
 **	UTILS CHECK

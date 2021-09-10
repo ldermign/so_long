@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 17:55:07 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/03 15:25:25 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/10 10:46:37 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -121,4 +121,4 @@ int	all_check(int ac, char **av, t_map *map)
 	if (!check_map(map))
 		return (ERROR);
 	return (SUCCESS);
-} 
+}

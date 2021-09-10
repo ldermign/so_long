@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 15:46:40 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/09 14:47:59 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/10 13:20:34 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,9 +50,9 @@ int		close_cross()
 
 void	ft_init_img(t_map *map, t_mlx *img)
 {
-	// printf("w = %d, h = %d\n", img->width, img->height);
 	img->width = map->size_line * 32;
 	img->height = map->len_map * 32;
+	// printf("w = %d, h = %d\n", img->width, img->height);
 }
 
 
@@ -68,7 +68,7 @@ int	main(int ac, char **av)
 
 	afficher_map(s()->map);
 
-	get_map_xpm(s()->img);
+	get_map_xpm(s()->img, s()->map);
 
 	mlx_hook(s()->img->win, 2, 1L<<0, &key_press, (void *)0);
 	mlx_hook(s()->img->win, 17, 1L<<0, &close_cross, (void *)0);
