@@ -6,19 +6,19 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:46:27 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/11 16:26:35 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/11 18:38:24 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-void	put_pixel_on_img(t_mlx *img, int y, int x, int color)
+void	put_pixel_on_img(t_mlx *img, int x, int y, int color)
 {
 	int		len;
 	t_color	*clr;
 
 	// printf("img->height = %d\n", img->height);
-	len = img->height;
+	len = img->width;
 	clr = malloc(sizeof(t_color));
 	if (clr == NULL)
 		quit(s()->map, "Something's wrong with malloc.\n", 0, 0);

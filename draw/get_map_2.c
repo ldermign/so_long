@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:53:31 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/11 11:29:39 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/11 18:41:01 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,28 +14,30 @@
 
 int	**get_color(t_mlx *txt)
 {
-	int	i;
-	int	j;
+	int	x;
+	int	y;
 	int	**tab;
 
-	i = 0;
+	y = 0;
 	txt->size_line /= 4;
+	// printf("size_line = %d\n", txt->size_line);
 	tab = malloc(sizeof(int *) * 32);
 	if (tab == NULL)
 		quit(s()->map, "Something's wrong with malloc.\n", 0, 0);
-	while (i < 32)
+	while (y < 32)
 	{
-		j = 0;
-		tab[i] = malloc(sizeof(int) * 32);
-		if (tab[i] == NULL)
+		x = 0;
+		tab[y] = malloc(sizeof(int) * 32);
+		if (tab[y] == NULL)
 			quit(s()->map, "Something's wrong with malloc.\n", 0, 0);
-		while (j < 32)
+		while (x < 32)
 		{
-			tab[i][j] = txt->text[j * txt->size_line + i];
-			j++;
+			tab[y][x] = txt->text[y * txt->size_line + x];
+			x++;
 		}
-		i++;
+		y++;
 	}
+	txt->size_line *= 4;
 	return (tab);
 }
 
