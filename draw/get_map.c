@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:40:30 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/10 15:49:54 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/11 16:43:38 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 // 		j = 0;
 // 		while (j < 32)
 // 		{
-// 			put_pixel_on_img(img, x, y, color[j][i]);
+// 			put_pixel_on_img(img, x, y, color[i][j]);
 // 			x++;
 // 			j++;
 // 		}
@@ -37,33 +37,38 @@
 
 void	get_floor(t_mlx *img, int **color)
 {
-	int	i;
-	int	j;
-	int	x;
-	int	y;
+	int	i = 0;
+	int	j = 0;
+	int	x = 0;
+	int	y = 0;
 
 	i = 0;
 	y = 0;
-	printf("height = %d, width = %d\n", img->height, img->width);
+	int ret = 0;
+	// printf("height = %d, width = %d\n", img->height, img->width);
 	while (y < img->height)
 	{
 		x = 0;
 		j = 0;
 		while (x < img->width)
 		{
-			printf("i = %d, j = %d, x = %d, y = %d\n", i, j, x, y);
+			ret++;
+			// printf("i = %d, j = %d, x = %d, y = %d\n", i, j, x, y);
 			put_pixel_on_img(img, x, y, color[i][j]);
+			x++;
 			j++;
 			if (j == 32)
 				j = 0;
-			x++;
 		}
+		y++;
 		i++;
 		if (i == 32)
+		{
+			// printf("test\n");
 			i = 0;
-		y++;
-			// printf("x = %d\n", x);
+		}
 	}
+	// printf("ret = %d, doit etre %d\n", ret, img->height * img->width);
 	// printf("test\n");
 	// i = 0;j = 0;x = 0;y = 0;
 	// while (y < img->height)
@@ -71,7 +76,7 @@ void	get_floor(t_mlx *img, int **color)
 	// 	x = 0;
 	// 	while (x < img->width)
 	// 	{
-	// 		put_one_texture(img, y, x, color);
+	// 		put_one_texture(img, x, y, color);
 	// 		x += 32;
 	// 	}
 	// 	y += 32;

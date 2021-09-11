@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 15:46:40 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/10 13:20:34 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/11 11:35:03 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,9 @@ int	main(int ac, char **av)
 	s()->img->win = mlx_new_window(s()->img->mlx, s()->img->width, s()->img->height, "So_long");
 	s()->img->img = mlx_new_image(s()->img->mlx, s()->img->width, s()->img->height);
 	s()->img->addr = mlx_get_data_addr(s()->img->img, &s()->img->bpp, &s()->img->size_line, &s()->img->endian);
+	s()->img->text = (int *)mlx_get_data_addr(s()->img->img, &s()->img->bpp, &s()->img->size_line, &s()->img->endian);
 
+	printf("w = %d (%d), h = %d (%d)\n", s()->img->width, s()->img->width / 32, s()->img->height, s()->img->height / 32);
 	afficher_map(s()->map);
 
 	get_map_xpm(s()->img, s()->map);
