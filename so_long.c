@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 15:46:40 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/11 11:35:03 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/12 12:37:10 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +58,8 @@ void	ft_init_img(t_map *map, t_mlx *img)
 
 int	main(int ac, char **av)
 {
-	all_check(ac, av, s()->map);
+	if (all_check(ac, av, s()->map) == -1)
+		exit (0);
 	ft_init_img(s()->map, s()->img);
 
 	s()->img->mlx = mlx_init();

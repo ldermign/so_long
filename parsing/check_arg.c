@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 17:55:07 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/10 10:46:37 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/12 12:49:17 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	recup_map(t_map *map, char *av)
 	fd_map = open(av, O_RDONLY);
 	line = 0;
 	map->map = (char **)malloc(sizeof(char *) * (map->len_map + 1));
-	if (map->map == NULL)
+	if (map->map == NULL || fd_map == -1)
 		return (ERROR);
 	while (1)
 	{
@@ -92,7 +92,7 @@ int	ft_check_arg(int ac, char **ag)
 	}
 	else if (ac == 2)
 	{
-		if (!ft_check_name_map(ag[1]))
+		if (ft_check_name_map(ag[1]) == -1)
 			return (ERROR);
 	}
 	else
@@ -105,20 +105,20 @@ int	ft_check_arg(int ac, char **ag)
 
 int	all_check(int ac, char **av, t_map *map)
 {
-	if (map == NULL || !ft_check_arg(ac, av))
+	if (map == NULL || ft_check_arg(ac, av) == -1)
 		return (ERROR);
 	map->len_map = 0;
-	if (!check_file_descriptor(map, av[1]))
+	if (check_file_descriptor(map, av[1]) == -1)
 	{
-		ft_printf("ERROR\nCheck map's name or extension.\n");
+		ft_printf("Error\nCheck map's name or extension.\n");
 		return (ERROR);
 	}
-	if (!recup_map(map, av[1]))
+	if (recup_map(map, av[1]) == -1)
 	{
 		ft_printf("Error\nBad malloc...\n");
 		return (ERROR);
 	}
-	if (!check_map(map))
+	if (check_map(map) == -1)
 		return (ERROR);
 	return (SUCCESS);
 }

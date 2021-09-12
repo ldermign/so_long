@@ -6,11 +6,24 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 15:19:17 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/04 10:06:49 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/12 13:03:05 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	free_tab_int(int **tab)
+{
+	int	i;
+
+	i = 0;
+	while (i < 32)
+	{
+		free(tab[i]);
+		i++;
+	}
+	free(tab);
+}
 
 void	ft_print_map(char **map, int red)
 {

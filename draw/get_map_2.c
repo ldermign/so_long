@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:53:31 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/11 18:41:01 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/12 13:00:50 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ int	**get_color(t_mlx *txt)
 
 	y = 0;
 	txt->size_line /= 4;
-	// printf("size_line = %d\n", txt->size_line);
 	tab = malloc(sizeof(int *) * 32);
 	if (tab == NULL)
 		quit(s()->map, "Something's wrong with malloc.\n", 0, 0);

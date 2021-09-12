@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 14:14:37 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/10 10:45:51 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/12 18:08:09 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@
 # define ERROR -1
 # define SUCCESS 1
 # define FLOOR "./textures/floor.xpm"
-# define WALL "./textures/wall.xpm"
+# define WALL "./textures/shell00.xpm"
 # define COLL
 # define EXIT
 # define PLR_N
@@ -74,6 +74,7 @@ int	    get_r(int trgb);
 int	    get_g(int trgb);
 int	    get_b(int trgb);
 int		quit(t_map *map, char *str_err, int i, int place);
+void	free_tab_int(int **tab);
 
 /*
 **  UTILS DRAW

@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:40:30 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/12 12:15:10 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/12 14:32:42 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,62 +37,31 @@ void	put_one_texture(t_mlx *img, int x, int y, int **color)
 
 void	get_floor(t_mlx *img, int **color)
 {
-	int	i = 0;
-	int	j = 0;
-	int	x = 0;
-	int	y = 0;
-	int	nb_x = (img->width / 32);
-	int	nb_y = (img->height / 32);
-	int	count_x = 0;
-	int	count_y = 0;
+	int	i;
+	int	j;
+	int	x;
+	int	y;
 
-	// printf("h -> [%d], w -> [%d]\n", nb_y, nb_x);
 	i = 0;
 	y = 0;
-	// int ret = 0;
-	// afficher_couleurs(color);
-	printf("height = %d, width = %d\n", img->height, img->width);
-	while (count_y < nb_y)
+	while (y < img->height)
 	{
-		count_x = 0;
 		x = 0;
 		j = 0;
-		while (count_x < nb_x)
+		while (x < img->width)
 		{
-			// if ((y == 1 || y == 2) && x >= 544)
-			// if (y == 1)
-			// 	printf("i = %d\n", i);
 			put_pixel_on_img(img, x, y, color[i][j]);
 			x++;
 			j++;
 			if (j == 32)
-			{
 				j = 0;
-				count_x++;
-			}
 
 		}
 		y++;
 		i++;
 		if (i == 32)
-		{
 			i = 0;
-			count_y++;
-		}
 	}
-	// printf("test\n");
-	// i = 0;j = 0;x = 0;y = 0;
-	// while (x <= img->height)
-	// {
-	// 	y = 0;
-	// 	while (y <= img->width)
-	// 	{
-	// 		put_one_texture(img, x, y, color);
-	// 		y += 32;
-	// 	}
-	// 	x += 32;
-	// }
-	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 }
 
 void	draw_wall(t_mlx *img, int **color_txt, int x, int y)
@@ -104,39 +73,38 @@ void	draw_wall(t_mlx *img, int **color_txt, int x, int y)
 	i = 0;
 	x *= 32;
 	y *= 32;
-	ret = y;
+	ret = x;
 	while (i < 32)
 	{
-		y = ret;
+		x = ret;
 		j = 0;
 		while (j < 32)
 		{
 			put_pixel_on_img(img, x, y, color_txt[i][j]);
 			j++;
-			y++;
+			x++;
 		}
 		i++;
-		x++;
+		y++;
 	}
-	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 }
 
 void	get_wall(t_mlx *img, char **map, int **color_txt)
 {
-	int	i;
-	int	j;
+	int	y;
+	int	x;
 
-	i = 0;
-	while (map[i])
+	y = 0;
+	while (map[y])
 	{
-		j = 0;
-		while (map[i][j])
+		x = 0;
+		while (map[y][x])
 		{
-			if (map[i][j] == '1')
-				draw_wall(img, color_txt, j, i);
-			j++;
+			if (map[y][x] == '1')
+				draw_wall(img, color_txt, x, y);
+			x++;
 		}
-		i++;
+		y++;
 	}
 }
 
@@ -150,7 +118,11 @@ void	get_map_xpm(t_mlx *img, t_map *map)
 		quit(s()->map, "Something's wrong with malloc.\n", 0, 0);
     color = create_texture(txt, FLOOR);
 	get_floor(img, color);
+	free_tab_int(color);
+    color = create_texture(txt, WALL);
+    get_wall(img, map->map, color);
+	// free_tab_int(color);
     // color = create_texture(txt, WALL);
-	(void)map;
     // get_wall(img, map->map, color);
+	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 }
