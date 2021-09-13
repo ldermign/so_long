@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 14:14:37 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/12 18:08:09 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/13 14:23:22 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,13 +27,28 @@
 # define ERROR -1
 # define SUCCESS 1
 # define FLOOR "./textures/floor.xpm"
-# define WALL "./textures/shell00.xpm"
-# define COLL
-# define EXIT
-# define PLR_N
-# define PLR_S
-# define PLR_E
-# define PLR_W
+# define WALL "./textures/wall.xpm"
+# define SH00 "./textures/shell00.xpm"
+# define SH01 "./textures/shell01.xpm"
+# define C00 "./textures/c00.xpm"
+# define C01 "./textures/c01.xpm"
+# define C02 "./textures/c02.xpm"
+# define C03 "./textures/c03.xpm"
+# define C04 "./textures/c04.xpm"
+# define C05 "./textures/c05.xpm"
+# define C06 "./textures/c06.xpm"
+# define C07 "./textures/c07.xpm"
+# define C08 "./textures/c08.xpm"
+# define C09 "./textures/c09xpm"
+# define C10 "./textures/c10.xpm"
+# define C11 "./textures/c11.xpm"
+# define C12 "./textures/c12.xpm"
+# define C13 "./textures/c13.xpm"
+# define PLR_B1 "./textures/plr_back_1.xpm"
+# define PLR_B2 "./textures/plr_back_2.xpm"
+# define PLR_F "./textures/plr_front.xpm"
+# define PLR_L "./textures/plr_left.xpm"
+# define PLR_R "./textures/plr_right.xpm"
 
 /*
 **	CHECK
@@ -48,6 +63,7 @@ int		check_map(t_map *map);
 
 void	get_map_xpm(t_mlx *img, t_map *map);
 int		**create_texture(t_mlx *txt, char *path_to_text);
+void	draw_one_texture(t_mlx *img, int **color_txt, int x, int y);
 
 /*
 **	UTILS CHECK

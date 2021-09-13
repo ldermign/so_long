@@ -6,11 +6,36 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:53:31 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/12 13:00:50 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/13 14:23:43 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+void	draw_one_texture(t_mlx *img, int **color_txt, int x, int y)
+{
+	int ret;
+	int	i;
+	int	j;
+
+	i = 0;
+	x *= 32;
+	y *= 32;
+	ret = x;
+	while (i < 32)
+	{
+		x = ret;
+		j = 0;
+		while (j < 32)
+		{
+			put_pixel_on_img(img, x, y, color_txt[i][j]);
+			j++;
+			x++;
+		}
+		i++;
+		y++;
+	}
+}
 
 int	**get_color(t_mlx *txt)
 {

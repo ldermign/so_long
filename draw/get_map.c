@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:40:30 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/12 14:32:42 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/13 14:57:24 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,31 +64,6 @@ void	get_floor(t_mlx *img, int **color)
 	}
 }
 
-void	draw_wall(t_mlx *img, int **color_txt, int x, int y)
-{
-	int ret;
-	int	i;
-	int	j;
-
-	i = 0;
-	x *= 32;
-	y *= 32;
-	ret = x;
-	while (i < 32)
-	{
-		x = ret;
-		j = 0;
-		while (j < 32)
-		{
-			put_pixel_on_img(img, x, y, color_txt[i][j]);
-			j++;
-			x++;
-		}
-		i++;
-		y++;
-	}
-}
-
 void	get_wall(t_mlx *img, char **map, int **color_txt)
 {
 	int	y;
@@ -101,11 +76,19 @@ void	get_wall(t_mlx *img, char **map, int **color_txt)
 		while (map[y][x])
 		{
 			if (map[y][x] == '1')
-				draw_wall(img, color_txt, x, y);
+				draw_one_texture(img, color_txt, x, y);
 			x++;
 		}
 		y++;
 	}
+}
+
+void	get_collectibles(t_mlx *img, t_mlx *txt, char **map)
+{
+	(void)img;
+	(void)txt;
+	(void)map;
+	// printf("[%ld]\n", ft_random(25));
 }
 
 void	get_map_xpm(t_mlx *img, t_map *map)
@@ -121,6 +104,7 @@ void	get_map_xpm(t_mlx *img, t_map *map)
 	free_tab_int(color);
     color = create_texture(txt, WALL);
     get_wall(img, map->map, color);
+	get_collectibles(img, txt, map->map);
 	// free_tab_int(color);
     // color = create_texture(txt, WALL);
     // get_wall(img, map->map, color);
