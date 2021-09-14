@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:40:30 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/13 14:57:24 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/14 09:21:57 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,29 +66,48 @@ void	get_floor(t_mlx *img, int **color)
 
 void	get_wall(t_mlx *img, char **map, int **color_txt)
 {
-	int	y;
-	int	x;
+	int	i;
+	int	j;
 
-	y = 0;
-	while (map[y])
+	i = 0;
+	while (map[i])
 	{
-		x = 0;
-		while (map[y][x])
+		j = 0;
+		while (map[i][j])
 		{
-			if (map[y][x] == '1')
-				draw_one_texture(img, color_txt, x, y);
-			x++;
+			if (map[i][j] == '1')
+				draw_one_texture(img, color_txt, j, i);
+			j++;
 		}
-		y++;
+		i++;
 	}
+}
+
+void	put_one_collectible(t_mlx *img, t_mlx *txt, int x, int y)
+{(void)img;(void)txt;(void)x;(void)y;
+	int	texture;
+
+	texture = ft_random(15);
+
 }
 
 void	get_collectibles(t_mlx *img, t_mlx *txt, char **map)
 {
-	(void)img;
-	(void)txt;
-	(void)map;
-	// printf("[%ld]\n", ft_random(25));
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'C')
+				put_one_collectible(img, txt, j, i);
+			j++;
+		}
+		i++;
+	}
 }
 
 void	get_map_xpm(t_mlx *img, t_map *map)
