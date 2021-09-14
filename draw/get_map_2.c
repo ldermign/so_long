@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:53:31 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/13 14:23:43 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/14 11:31:15 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ int	**get_color(t_mlx *txt)
 	return (tab);
 }
 
-int	**create_texture(t_mlx *txt, char *path_to_text)
+int	**create_txt(t_mlx *txt, char *path_to_text)
 {
 	int	**color;
 

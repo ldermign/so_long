@@ -6,34 +6,11 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:40:30 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/14 09:21:57 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/14 13:36:17 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
-
-void	put_one_texture(t_mlx *img, int x, int y, int **color)
-{
-	int ret;
-	int	i;
-	int	j;
-
-	i = 0;
-	ret = x;
-	while (i < 32)
-	{
-		j = 0;
-		while (j < 32)
-		{
-			put_pixel_on_img(img, x, y, color[i][j]);
-			x++;
-			j++;
-		}
-		x = ret;
-		y++;
-		i++;
-	}
-}
 
 void	get_floor(t_mlx *img, int **color)
 {
@@ -83,15 +60,60 @@ void	get_wall(t_mlx *img, char **map, int **color_txt)
 	}
 }
 
-void	put_one_collectible(t_mlx *img, t_mlx *txt, int x, int y)
-{(void)img;(void)txt;(void)x;(void)y;
-	int	texture;
+int	**put_one_collectible(t_mlx *txt)
+{
+	const t_txt_col	which_txt[] = {
+		{0, SH00, create_txt}, {1, SH01, create_txt}, {2, C00, create_txt},
+		{3, C01, create_txt}, {4, C02, create_txt}, {5, C03, create_txt},
+		{6, C04, create_txt}, {7, C05, create_txt}, {8, C06, create_txt},
+		{9, C07, create_txt}, {10, C08, create_txt}, {11, C09, create_txt},
+		{12, C10, create_txt}, {13, C11, create_txt}, {14, C12, create_txt},
+		{15, C13, create_txt}, {-1, NULL, NULL}
+	};
+	int	i;
+	int	**color;
+	int	ran_text;
 
-	texture = ft_random(15);
-
+	i = 0;
+	color = NULL;
+	ran_text = ft_random(15);
+	while (which_txt[i].which_col != -1)
+	{
+		if (ran_text == which_txt[i].which_col)
+		{
+			color = which_txt[i].f(txt, which_txt[i].path);
+			break ;
+		}
+		i++;
+	}
+	return (color);
 }
 
 void	get_collectibles(t_mlx *img, t_mlx *txt, char **map)
+{
+	int	i;
+	int	j;
+	int	**color;
+
+	i = 0;
+	while (map[i])
+	{
+		j = 0;
+		while (map[i][j])
+		{
+			if (map[i][j] == 'C')
+			{
+				color = put_one_collectible(txt);
+				draw_one_texture(img, color, j, i);
+				free_tab_int(color);
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
+void	get_exit_and_player(t_mlx *img, char **map, int **color_txt, char c)
 {
 	int	i;
 	int	j;
@@ -102,8 +124,11 @@ void	get_collectibles(t_mlx *img, t_mlx *txt, char **map)
 		j = 0;
 		while (map[i][j])
 		{
-			if (map[i][j] == 'C')
-				put_one_collectible(img, txt, j, i);
+			if (map[i][j] == c)
+			{
+				draw_one_texture(img, color_txt, j, i);
+				return ;
+			}
 			j++;
 		}
 		i++;
@@ -118,14 +143,18 @@ void	get_map_xpm(t_mlx *img, t_map *map)
 	txt = ft_calloc(1, sizeof(t_mlx));
 	if (txt == NULL)
 		quit(s()->map, "Something's wrong with malloc.\n", 0, 0);
-    color = create_texture(txt, FLOOR);
+    color = create_txt(txt, FLOOR);
 	get_floor(img, color);
 	free_tab_int(color);
-    color = create_texture(txt, WALL);
+    color = create_txt(txt, WALL);
     get_wall(img, map->map, color);
+	free_tab_int(color);
 	get_collectibles(img, txt, map->map);
-	// free_tab_int(color);
-    // color = create_texture(txt, WALL);
-    // get_wall(img, map->map, color);
+	color = create_txt(txt, EXIT);
+	get_exit_and_player(img, map->map, color, 'E');
+	free_tab_int(color);
+	color = create_txt(txt, PLR_F);
+	get_exit_and_player(img, map->map, color, 'P');
+	free_tab_int(color);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
 }

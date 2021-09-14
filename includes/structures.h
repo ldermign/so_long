@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 15:15:04 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/09 14:38:18 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/14 13:09:15 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,5 +52,12 @@ typedef struct s_colors
 }	t_color;
 
 t_s	*s(void);
+
+typedef struct s_texture_collectible
+{
+	int		which_col;
+	char	*path;
+	int		**(*f)(t_mlx *txt, char *path_to_text);
+}	t_txt_col;
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 15:46:40 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/12 12:37:10 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/14 16:02:00 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,12 @@ t_s	*s(void)
 	return (stc);
 }
 
+void	move_player(t_mlx *img, char **map)
+{
+	(void)img;
+	(void)map;
+}
+
 int		key_press(int keycode)
 {
 	if (keycode == 53)
@@ -38,6 +44,9 @@ int		key_press(int keycode)
 		quit(s()->map, "You pressed the escape button. Goodbye !\n", 3, 0);
 		exit (0);
 	}
+	if (keycode == 0 || keycode == 1 || keycode == 2 || keycode == 13
+		|| keycode == 123 || keycode == 124)
+		move_player(s()->img, s()->map->map);
 	return (SUCCESS);
 }
 
