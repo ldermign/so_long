@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 15:15:04 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/14 13:09:15 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/15 15:14:02 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,14 @@ typedef struct s_map
 	int		len_map;
 	int		size_line;
 	int		ret;
+	int		cltb;
+	int		plr_y;
+	int		plr_x;
+	int		back;
+	int		front;
+	int		left;
+	int		right;
+	int		mvmts;
 }	t_map;
 
 typedef struct  s_data

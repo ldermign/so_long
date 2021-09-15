@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 19:06:57 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/04 09:53:43 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/15 11:57:48 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,29 @@ int	check_around(t_map *map)
 	return (SUCCESS);
 }
 
+void	get_pos_plr(t_map *map)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	while (map->map[i])
+	{
+		j = 0;
+		while (map->map[i][j])
+		{
+			if (map->map[i][j] == 'P')
+			{
+				map->plr_y = i;
+				map->plr_x = j;
+				return ;
+			}
+			j++;
+		}
+		i++;
+	}
+}
+
 int	check_map(t_map *map)
 {
 	if (size_tab_char(map->map) <= 2)
@@ -104,5 +127,6 @@ int	check_map(t_map *map)
 		return (quit(map, "Not enough collectible.\n", 0, 0));
 	if (how_many_player_exit_collec(map->map, 'E') < 1)
 		return (quit(map, "Where is your exit ?\n", 0, 0));
+	get_pos_plr(map);
 	return (SUCCESS);
 }

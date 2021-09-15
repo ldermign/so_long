@@ -6,7 +6,7 @@
 #    By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 14:16:35 by ldermign          #+#    #+#              #
-#    Updated: 2021/09/09 14:59:08 by ldermign         ###   ########.fr        #
+#    Updated: 2021/09/15 15:42:37 by ldermign         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRCS	=	./so_long.c \
 			./parsing/utils_little_2.c \
 			./draw/get_map.c \
 			./draw/get_map_2.c \
+			./mvmts/wasd.c \
 			./utils/clean_quit.c \
 			./utils/utils_get_colors.c \
 			./utils/utils_draw.c \

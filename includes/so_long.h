@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 14:14:37 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/14 13:30:04 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/15 15:43:56 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,12 @@
 # define C13 "./textures/c13.xpm"
 # define PLR_B1 "./textures/plr_back_1.xpm"
 # define PLR_B2 "./textures/plr_back_2.xpm"
-# define PLR_F "./textures/plr_front.xpm"
-# define PLR_L "./textures/plr_left.xpm"
-# define PLR_R "./textures/plr_right.xpm"
+# define PLR_F1 "./textures/plr_front_1.xpm"
+# define PLR_F2 "./textures/plr_front_2.xpm"
+# define PLR_L1 "./textures/plr_left_1.xpm"
+# define PLR_L2 "./textures/plr_left_2.xpm"
+# define PLR_R1 "./textures/plr_right_1.xpm"
+# define PLR_R2 "./textures/plr_right_2.xpm"
 # define EXIT "./textures/exit.xpm"
 
 /*
@@ -65,6 +68,17 @@ int		check_map(t_map *map);
 void	get_map_xpm(t_mlx *img, t_map *map);
 int		**create_txt(t_mlx *txt, char *path_to_text);
 void	draw_one_texture(t_mlx *img, int **color_txt, int x, int y);
+void	put_texture_on_square(t_mlx *img, t_map *map, char *path_txt);
+void	put_pixel_on_img(t_mlx *img, int x, int y, int color);
+
+/*
+**	MOVEMENTS
+*/
+
+void 	move_left(t_mlx *img, t_map *map);
+void 	move_down(t_mlx *img, t_map *map);
+void 	move_right(t_mlx *img, t_map *map);
+void 	move_up(t_mlx *img, t_map *map);
 
 /*
 **	UTILS CHECK
@@ -93,11 +107,6 @@ int	    get_b(int trgb);
 int		quit(t_map *map, char *str_err, int i, int place);
 void	free_tab_int(int **tab);
 
-/*
-**  UTILS DRAW
-*/
-
-void	put_pixel_on_img(t_mlx *img, int x, int y, int color);
 
 /*
 **	SUPPRIMER

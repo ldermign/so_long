@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:53:31 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/14 11:31:15 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/15 15:52:25 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	draw_one_texture(t_mlx *img, int **color_txt, int x, int y)
 {
-	int ret;
+	int	ret;
 	int	i;
 	int	j;
 
@@ -71,9 +71,12 @@ int	**create_txt(t_mlx *txt, char *path_to_text)
 
 	color = NULL;
 	txt->mlx = mlx_init();
-	txt->img = mlx_xpm_file_to_image(txt->mlx, path_to_text, &txt->width, &txt->height);
-	txt->text = (int *)mlx_get_data_addr(txt->img, &txt->bpp, &txt->size_line, &txt->endian);
-	txt->addr = mlx_get_data_addr(txt->img, &txt->bpp, &txt->size_line, &txt->endian);
+	txt->img = mlx_xpm_file_to_image(txt->mlx, path_to_text, &txt->width,
+			&txt->height);
+	txt->text = (int *)mlx_get_data_addr(txt->img, &txt->bpp, &txt->size_line,
+			&txt->endian);
+	txt->addr = mlx_get_data_addr(txt->img, &txt->bpp, &txt->size_line,
+			&txt->endian);
 	color = get_color(txt);
 	return (color);
 }

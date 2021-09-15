@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 18:46:52 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/04 11:59:35 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/15 11:49:55 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,8 @@ int	how_many_player_exit_collec(char **map, char c)
 		}
 		i++;
 	}
+	if (c == 'C' && tmp > 1)
+		s()->map->cltb = tmp;
 	return (tmp);
 }
 
