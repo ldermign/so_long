@@ -122,6 +122,5 @@ void	free_tab_int(int **tab);
 #define CLR_COLOR "\x1b[0m" // CLEAR COLOR
 void	afficher_map(t_map *map);
 void	afficher_couleurs(int **tab);
-#include <libc.h>
 
 #endif

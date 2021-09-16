@@ -25,15 +25,15 @@ SRCS	=	./so_long.c \
 			./utils/utils_draw.c \
 			./supprimer.c
 
-INCS	=	-I ./includes/ -I ./libft/includes/ -I ./mlx/
+INCS	=	-I ./includes/ -I ./libft/includes/ -I ./minilibx-linux/
 
 OBJS	=	${SRCS:.c=.o}
 
 CC		=	clang
 
-MLX		=	libmlx.dylib
+MLX		=	libmlx_Linux.a
 
-CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address
+CFLAGS	=	-Wall -Wextra -Werror
 
 RM		=	rm -rf
 
@@ -41,12 +41,12 @@ all:		${NAME}
 
 ${NAME}:	${OBJS}
 			${MAKE} -C libft ${INCS}
-			${CC} ${CFLAGS} ${INCS} -I ${MLX} -Lmlx -lmlx -framework OpenGL -framework AppKit $^ -o $@ ./libft/libft.a
+			${CC} -o ${NAME} ${INCS} -L./minilibx-linux -lbsd -lmlx -lXext -lX11 -lm -o $(NAME) ./libft/libft.a
 
 .c.o:
-			${MAKE} -C MLX
-			cp mlx/${MLX} .
-			${CC} ${CFLAGS} ${INCS} -c $< -o $@
+			${MAKE} -C ./minilibx-linux/
+			cp ./minilibx-linux/${MLX} .
+			${CC} ${CFLAGS} ${INCS} -Imlx_linux -O3 -c $< -o $@
 
 clean:
 			${MAKE} -C libft clean
