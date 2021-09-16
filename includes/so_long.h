@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 14:14:37 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/15 15:43:56 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/16 10:21:34 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,10 +75,10 @@ void	put_pixel_on_img(t_mlx *img, int x, int y, int color);
 **	MOVEMENTS
 */
 
-void 	move_left(t_mlx *img, t_map *map);
-void 	move_down(t_mlx *img, t_map *map);
-void 	move_right(t_mlx *img, t_map *map);
-void 	move_up(t_mlx *img, t_map *map);
+void	move_left(t_mlx *img, t_map *map);
+void	move_down(t_mlx *img, t_map *map);
+void	move_right(t_mlx *img, t_map *map);
+void	move_up(t_mlx *img, t_map *map);
 
 /*
 **	UTILS CHECK
@@ -99,14 +99,13 @@ int		ft_strchr_tab_wrong_cara(char **tab);
 **	UTILS COLOR AND FREE
 */
 
-int	    create_trgb(int t, int r, int g, int b);
-int	    get_t(int trgb);
-int	    get_r(int trgb);
-int	    get_g(int trgb);
-int	    get_b(int trgb);
+int		create_trgb(int t, int r, int g, int b);
+int		get_t(int trgb);
+int		get_r(int trgb);
+int		get_g(int trgb);
+int		get_b(int trgb);
 int		quit(t_map *map, char *str_err, int i, int place);
 void	free_tab_int(int **tab);
-
 
 /*
 **	SUPPRIMER

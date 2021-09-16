@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 15:15:04 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/15 15:14:02 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/16 10:19:35 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,14 +35,14 @@ typedef struct  s_data
 {
 	void	*mlx;
 	void	*win;
-	void	*img;		/* pointer qui permet d'identifier l'image */
-	char	*addr;		/* string contenant tous les pixels de l'image */
+	void	*img;
+	char	*addr;
 	int		*text;
-	int		bpp;		/* nombre de bits par pixels -> 32 */
-	int		size_line;	/* taille de la addr */
-	int		endian;		/* permet de signifier la fin d'une image*/
-	int		width;		// largeur
-	int		height;		// hauteur
+	int		bpp;
+	int		size_line;
+	int		endian;
+	int		width;
+	int		height;
 }	t_mlx;
 
 typedef struct  s_structure

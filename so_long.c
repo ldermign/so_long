@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 15:46:40 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/15 15:56:26 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/16 10:17:29 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,21 +35,23 @@ int	key_press(int keycode)
 {
 	if (keycode == 53)
 	{
-		quit(s()->map, "You pressed the escape button. Goodbye !\n", 3, 0);
+		quit(s()->map, "You pressed the escape button. Goodbye !\n", 4, 0);
 		exit (0);
 	}
 	if (keycode == 0 || keycode == 1 || keycode == 2 || keycode == 13)
 	{
-		if (keycode == 0)
+		if (keycode == 0
+			&& s()->map->map[s()->map->plr_y][(s()->map->plr_x - 1)] != '1')
 			move_left(s()->img, s()->map);
-		if (keycode == 1)
+		if (keycode == 1
+			&& s()->map->map[(s()->map->plr_y + 1)][(s()->map->plr_x)] != '1')
 			move_down(s()->img, s()->map);
-		if (keycode == 2)
+		if (keycode == 2
+			&& s()->map->map[s()->map->plr_y][(s()->map->plr_x + 1)] != '1')
 			move_right(s()->img, s()->map);
-		if (keycode == 13)
+		if (keycode == 13
+			&& s()->map->map[(s()->map->plr_y - 1)][(s()->map->plr_x)] != '1')
 			move_up(s()->img, s()->map);
-		s()->map->mvmts++;
-		ft_printf("%d movements.\n", s()->map->mvmts);
 		mlx_put_image_to_window(s()->img->mlx, s()->img->win,
 			s()->img->img, 0, 0);
 	}
@@ -58,7 +60,7 @@ int	key_press(int keycode)
 
 int	close_cross(void)
 {
-	quit(s()->map, "You clicked on the cross. Goodbye !\n", 3, 0);
+	quit(s()->map, "You clicked on the cross. Goodbye !\n", 4, 0);
 	exit (0);
 	return (SUCCESS);
 }
