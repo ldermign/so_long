@@ -14,10 +14,8 @@
 
 void	put_pixel_on_img(t_mlx *img, int x, int y, int color)
 {
-	int		len;
 	t_color	*clr;
 
-	len = img->width;
 	clr = malloc(sizeof(t_color));
 	if (clr == NULL)
 		quit(s()->map, "Something's wrong with malloc.\n", 0, 0);
