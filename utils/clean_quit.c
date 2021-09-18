@@ -57,10 +57,23 @@ int	quit(t_map *map, char *str_err, int i, int place)
 		free(s()->img->mlx);
 		free(s()->img->win);
 		free(s()->img->img);
+		free(s()->img);
 		// if (s()->img->addr != NULL)
 		// 	free(s()->img->addr);
 		// if (s()->img->text != NULL)
 		// 	free(s()->img->text);
 	}
 	exit (0);
+}
+
+void	free_mlx(t_mlx *img)
+{
+	free(img->mlx);
+	free(img->win);
+	free(img->img);
+	// if (img->addr != NULL)
+	// 	free(img->addr);
+	// if (img->text != NULL)
+	// 	free(img->text);
+	free(img);
 }

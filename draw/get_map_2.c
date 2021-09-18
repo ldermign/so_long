@@ -65,10 +65,14 @@ int	**get_color(t_mlx *txt)
 	return (tab);
 }
 
-int	**create_txt(t_mlx *txt, char *path_to_text)
+int	**create_txt(char *path_to_text)
 {
 	int	**color;
+	t_mlx	*txt;
 
+	txt = ft_calloc(1, sizeof(t_mlx));
+	if (txt == NULL)
+		quit(s()->map, "Something's wrong with malloc.\n", 0, 0);
 	color = NULL;
 	txt->mlx = mlx_init();
 	txt->img = mlx_xpm_file_to_image(txt->mlx, path_to_text, &txt->width,
@@ -78,5 +82,9 @@ int	**create_txt(t_mlx *txt, char *path_to_text)
 	txt->addr = mlx_get_data_addr(txt->img, &txt->bpp, &txt->size_line,
 			&txt->endian);
 	color = get_color(txt);
+	mlx_destroy_image(txt->mlx, txt->img);
+	// mlx_destroy_display(txt->mlx);
+	// free_mlx(txt);
+	free(txt);
 	return (color);
 }

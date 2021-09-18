@@ -33,23 +33,23 @@ t_s	*s(void)
 
 int	key_press(int keycode)
 {
-	if (keycode == 53)
+	if (keycode == 65307)
 	{
 		quit(s()->map, "You pressed the escape button. Goodbye !\n", 4, 0);
 		exit (0);
 	}
-	if (keycode == 0 || keycode == 1 || keycode == 2 || keycode == 13)
+	if (keycode == 97 || keycode == 115 || keycode == 100 || keycode == 119)
 	{
-		if (keycode == 0
+		if (keycode == 97
 			&& s()->map->map[s()->map->plr_y][(s()->map->plr_x - 1)] != '1')
 			move_left(s()->img, s()->map);
-		if (keycode == 1
+		if (keycode == 115
 			&& s()->map->map[(s()->map->plr_y + 1)][(s()->map->plr_x)] != '1')
 			move_down(s()->img, s()->map);
-		if (keycode == 2
+		if (keycode == 100
 			&& s()->map->map[s()->map->plr_y][(s()->map->plr_x + 1)] != '1')
 			move_right(s()->img, s()->map);
-		if (keycode == 13
+		if (keycode == 119
 			&& s()->map->map[(s()->map->plr_y - 1)][(s()->map->plr_x)] != '1')
 			move_up(s()->img, s()->map);
 		mlx_put_image_to_window(s()->img->mlx, s()->img->win,

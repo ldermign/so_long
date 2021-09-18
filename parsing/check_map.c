@@ -49,8 +49,8 @@ int	check_space(t_map *map, char **tab, int c)
 	{
 		if (ft_int_strchr(tab[i], c))
 		{
-			j = ft_pos_strchr(tab[i], c) + ret;
-			while (j < map->len_map - 1)
+			j = ft_pos_strchr(tab[i], c) + ret + 1;
+			while (j < map->len_map)
 			{
 				if (tab[i][j] == c && ((i != 0 && tab[i - 1][j] == ' ')
 					|| (j != 0 && tab[i][j - 1] == ' ') || tab[i][j + 1] == ' '

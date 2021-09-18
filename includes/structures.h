@@ -65,7 +65,7 @@ typedef struct s_texture_collectible
 {
 	int		which_col;
 	char	*path;
-	int		**(*f)(t_mlx *txt, char *path_to_text);
+	int		**(*f)(char *path_to_text);
 }	t_txt_col;
 
 #endif

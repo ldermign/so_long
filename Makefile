@@ -12,6 +12,8 @@
 
 NAME	=	so_long
 
+INCS	=	./includes/
+
 SRCS	=	./so_long.c \
 			./parsing/check_arg.c \
 			./parsing/check_map.c \
@@ -25,39 +27,31 @@ SRCS	=	./so_long.c \
 			./utils/utils_draw.c \
 			./supprimer.c
 
-INCS	=	-I ./includes/ -I ./libft/includes/ -I ./mlx/
-
 OBJS	=	${SRCS:.c=.o}
 
 CC		=	clang
 
-CFLAGS	=	-Wall -Wextra -Werror
+CFLAGS	=	-Wall -Wextra -Werror -g3 -I ${INCS}
 
-RM		=	rm -rf
+MLFLGS	=	-L./mlx -lbsd -lmlx -lXext -lX11 -lm
 
 all:		${NAME}
 
-${NAME}:	${OBJS}
-			${MAKE} -C libft ${INCS}
-			cp ./libft/libft.a .
-			${CC} ${CFLAGS} -o ${NAME} ${INCS} -L ./mlx/ -lmlx -lXext -lX11 -lm ./libft/libft.a
-			# ${CC} ${CFLAGS} -o ${NAME} ${INCS} ${SRCS} -L ./mlx/ -lmlx -lXext -lX11 -lm
+${NAME}:	${OBJS} ${INCS}
+			${MAKE} -C ./libft
+			${MAKE} -C ./mlx
+			${CC} -o ${NAME} ${OBJS} ${CFLAGS} ${MLFLGS} libft/libft.a
 
-.c.o:
-			${MAKE} -C ./mlx/
-			cp ./mlx/libmlx_Linux.a .
-			${CC} ${CFLAGS} ${INCS} -Imlx -Ibass -c $< -o ${<:c=o}
-			# ${INCS} -Imlx_linux -O3 -c $< -o $@
+.c.o:		${CC} ${CFLAGS} -c $< -o ${<:c=o}
 
 clean:
 			${MAKE} -C libft clean
 			${MAKE} -C mlx clean
-			${RM} ${OBJS}
+			rm -f ${OBJS}
 
 fclean:		clean
 			${MAKE} -C libft fclean
-			${RM} libmlx_Linux.a
-			${RM} ${NAME}
+			rm -f ${NAME}
 
 re:			fclean all
 

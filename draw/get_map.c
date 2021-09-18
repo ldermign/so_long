@@ -38,7 +38,7 @@ void	get_floor_wall_ex_plr(t_mlx *img, char **map, int **color_txt, char c)
 	}
 }
 
-int	**put_one_collectible(t_mlx *txt)
+int	**put_one_collectible(void)
 {
 	const t_txt_col	which_txt[] = {
 		{0, SH00, create_txt}, {1, SH01, create_txt}, {2, C00, create_txt},
@@ -59,7 +59,8 @@ int	**put_one_collectible(t_mlx *txt)
 	{
 		if (ran_text == which_txt[i].which_col)
 		{
-			color = which_txt[i].f(txt, which_txt[i].path);
+			color = which_txt[i].f(which_txt[i].path);
+			free_tab_int(color);
 			break ;
 		}
 		i++;
@@ -67,7 +68,7 @@ int	**put_one_collectible(t_mlx *txt)
 	return (color);
 }
 
-void	get_collectibles(t_mlx *img, t_mlx *txt, char **map)
+void	get_collectibles(t_mlx *img, char **map)
 {
 	int	i;
 	int	j;
@@ -81,7 +82,7 @@ void	get_collectibles(t_mlx *img, t_mlx *txt, char **map)
 		{
 			if (map[i][j] == 'C')
 			{
-				color = put_one_collectible(txt);
+				color = put_one_collectible();
 				draw_one_texture(img, color, j, i);
 				free_tab_int(color);
 			}
@@ -94,12 +95,8 @@ void	get_collectibles(t_mlx *img, t_mlx *txt, char **map)
 void	put_texture_on_square(t_mlx *img, t_map *map, char *path_txt)
 {
 	int		**color;
-	t_mlx	*txt;
 
-	txt = ft_calloc(1, sizeof(t_mlx));
-	if (txt == NULL)
-		quit(map, "Something's wrong with malloc.\n", 0, 0);
-	color = create_txt(txt, path_txt);
+	color = create_txt(path_txt);
 	draw_one_texture(img, color, map->plr_x, map->plr_y);
 	free_tab_int(color);
 }
@@ -107,22 +104,18 @@ void	put_texture_on_square(t_mlx *img, t_map *map, char *path_txt)
 void	get_map_xpm(t_mlx *img, t_map *map)
 {
 	int		**color;
-	t_mlx	*txt;
 
-	txt = ft_calloc(1, sizeof(t_mlx));
-	if (txt == NULL)
-		quit(map, "Something's wrong with malloc.\n", 0, 0);
-	color = create_txt(txt, FLOOR);
+	color = create_txt(FLOOR);
 	get_floor_wall_ex_plr(img, map->map, color, '0');
 	free_tab_int(color);
-	color = create_txt(txt, WALL);
+	color = create_txt(WALL);
 	get_floor_wall_ex_plr(img, map->map, color, '1');
 	free_tab_int(color);
-	get_collectibles(img, txt, map->map);
-	color = create_txt(txt, EXIT);
+	get_collectibles(img, map->map);
+	color = create_txt(EXIT);
 	get_floor_wall_ex_plr(img, map->map, color, 'E');
 	free_tab_int(color);
-	color = create_txt(txt, PLR_F1);
+	color = create_txt(PLR_F1);
 	get_floor_wall_ex_plr(img, map->map, color, 'P');
 	free_tab_int(color);
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
