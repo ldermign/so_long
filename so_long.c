@@ -36,6 +36,9 @@ int	key_press(int keycode)
 	if (keycode == 65307)
 	{
 		quit(s()->map, "You pressed the escape button. Goodbye !\n", 4, 0);
+		close_window();
+		mlx_destroy_display(s()->img->mlx);
+		free(s()->img->mlx);
 		exit (0);
 	}
 	if (keycode == 97 || keycode == 115 || keycode == 100 || keycode == 119)
@@ -61,8 +64,10 @@ int	key_press(int keycode)
 int	close_cross(void)
 {
 	quit(s()->map, "You clicked on the cross. Goodbye !\n", 4, 0);
+	close_window();
+	mlx_destroy_display(s()->img->mlx);
+	free(s()->img->mlx);
 	exit (0);
-	return (SUCCESS);
 }
 
 void	ft_init_img(t_map *map, t_mlx *img)
@@ -95,5 +100,7 @@ int	main(int ac, char **av)
 	mlx_hook(s()->img->win, 2, 1L << 0, &key_press, (void *)0);
 	mlx_hook(s()->img->win, 17, 1L << 0, &close_cross, (void *)0);
 	mlx_loop(s()->img->mlx);
-	return (SUCCESS);
+	mlx_destroy_display(s()->img->mlx);
+	free(s()->img->mlx);
+	exit (0);
 }

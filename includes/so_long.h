@@ -107,6 +107,7 @@ int		get_b(int trgb);
 int		quit(t_map *map, char *str_err, int i, int place);
 void	free_tab_int(int **tab);
 void	free_mlx(t_mlx *img);
+void	close_window();
 
 /*
 **	SUPPRIMER

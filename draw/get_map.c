@@ -60,8 +60,7 @@ int	**put_one_collectible(void)
 		if (ran_text == which_txt[i].which_col)
 		{
 			color = which_txt[i].f(which_txt[i].path);
-			free_tab_int(color);
-			break ;
+			return (color);
 		}
 		i++;
 	}
