@@ -55,7 +55,7 @@ int	**put_one_collectible(void)
 	i = 0;
 	color = NULL;
 	ran_text = ft_random(15);
-	ft_printf("ran = %d\n", ran_text);
+	// printf("ran = %d\n", ran_text);
 	while (which_txt[i].which_col != -1)
 	{
 		if (ran_text == which_txt[i].which_col)

@@ -108,6 +108,7 @@ int		quit(t_map *map, char *str_err, int i, int place);
 void	free_tab_int(int **tab);
 void	free_mlx(t_mlx *img);
 void	close_window();
+void	free_image(t_mlx *img);
 
 /*
 **	SUPPRIMER
@@ -124,5 +125,6 @@ void	close_window();
 #define CLR_COLOR "\x1b[0m" // CLEAR COLOR
 void	afficher_map(t_map *map);
 void	afficher_couleurs(int **tab);
+#include <stdlib.h>
 
 #endif

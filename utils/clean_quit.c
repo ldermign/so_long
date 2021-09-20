@@ -52,20 +52,11 @@ int	quit(t_map *map, char *str_err, int i, int place)
 		ft_print_map(map->map, place - 1);
 	ft_free_tab(map->map);
 	free(map);
-	// if (i == 4)
-	// {
-	// 	return (0);
-		// free(s()->img->mlx);
-		// free(s()->img->win);
-		// free(s()->img->img);
-		// free(s()->img);
-		// if (s()->img->addr != NULL)
-		// 	free(s()->img->addr);
-		// if (s()->img->text != NULL)
-		// 	free(s()->img->text);
-	// }
-	free(s()->img);
-	free(s());
+	if (i != 5)
+	{
+		free(s()->img);
+		free(s());
+	}
 	exit (0);
 }
 
@@ -74,15 +65,21 @@ void	free_mlx(t_mlx *img)
 	free(img->mlx);
 	free(img->win);
 	free(img->img);
-	// if (img->addr != NULL)
-	// 	free(img->addr);
-	// if (img->text != NULL)
-	// 	free(img->text);
-	free(img);
+	img->addr = NULL;
+	if (img->addr)
+		free(img->addr);
+	img->text = NULL;
+	if (img->text)
+		free(img->text);
 }
 
-void	close_window()
+void	close_image(t_mlx img)
 {
-	mlx_destroy_window(s()->img->mlx, s()->img->win);
-	s()->img->win = NULL;
+	mlx_destroy_image(img.mlx, img.win);
+}
+
+void	free_image(t_mlx *img)
+{
+	close_image(*img);
+	free(img);
 }
