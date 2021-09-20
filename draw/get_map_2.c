@@ -82,14 +82,9 @@ int	**create_txt(char *path_to_text)
 	txt->addr = mlx_get_data_addr(txt->img, &txt->bpp, &txt->size_line,
 			&txt->endian);
 	color = get_color(txt);
-	// close_window(txt->img, txt->win);
 	txt->win = NULL;
-
-	// mlx_destroy_image(txt->mlx, txt->img);
-	// free(txt->mlx);
+	mlx_destroy_image(txt->mlx, txt->img);
 	mlx_destroy_display(txt->mlx);
-	free(txt->mlx);
-	// free_mlx(txt);
 	free(txt);
 	return (color);
 }

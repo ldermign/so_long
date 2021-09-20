@@ -52,9 +52,9 @@ int	quit(t_map *map, char *str_err, int i, int place)
 		ft_print_map(map->map, place - 1);
 	ft_free_tab(map->map);
 	free(map);
-	if (i == 4)
-	{
-		return (0);
+	// if (i == 4)
+	// {
+	// 	return (0);
 		// free(s()->img->mlx);
 		// free(s()->img->win);
 		// free(s()->img->img);
@@ -63,7 +63,7 @@ int	quit(t_map *map, char *str_err, int i, int place)
 		// 	free(s()->img->addr);
 		// if (s()->img->text != NULL)
 		// 	free(s()->img->text);
-	}
+	// }
 	free(s()->img);
 	free(s());
 	exit (0);

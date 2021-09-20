@@ -38,34 +38,6 @@ int	check_start_end_map(t_map *map)
 	return (-1);
 }
 
-int	check_space(t_map *map, char **tab, int c)
-{
-	int	i;
-	int	j;
-	int	ret;
-
-	i = 1;
-	while (tab[i])
-	{
-		if (ft_int_strchr(tab[i], c))
-		{
-			j = ft_pos_strchr(tab[i], c) + ret + 1;
-			while (j < map->len_map)
-			{
-				if (tab[i][j] == c && ((i != 0 && tab[i - 1][j] == ' ')
-					|| (j != 0 && tab[i][j - 1] == ' ') || tab[i][j + 1] == ' '
-					|| tab[i + 1][j] == ' '))
-					return (ERROR);
-			}
-			ret = j;
-		}
-		i++;
-		if (i == size_tab_char(tab) - 1)
-			break ;
-	}
-	return (SUCCESS);
-}
-
 int	check_around(t_map *map)
 {
 	int	i;
@@ -119,10 +91,6 @@ int	check_map(t_map *map)
 				ft_strchr_tab_wrong_cara(map->map)));
 	if (!check_around(map))
 		return (ERROR);
-	if (!check_space(map, map->map, '0') || !check_space(map, map->map, 'C')
-		|| !check_space(map, map->map, 'E')
-		|| !check_space(map, map->map, 'P'))
-		return (quit(map, "It's missing some wall. Go check that.\n", 0, 0));
 	if (how_many_player_exit_collec(map->map, 'C') < 2)
 		return (quit(map, "Not enough collectible.\n", 0, 0));
 	if (how_many_player_exit_collec(map->map, 'E') < 1)
