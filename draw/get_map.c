@@ -54,8 +54,7 @@ int	**put_one_collectible(void)
 
 	i = 0;
 	color = NULL;
-	ran_text = ft_random(15);
-	// printf("ran = %d\n", ran_text);
+	ran_text = ft_random(16);
 	while (which_txt[i].which_col != -1)
 	{
 		if (ran_text == which_txt[i].which_col)
@@ -90,15 +89,6 @@ void	get_collectibles(t_mlx *img, char **map)
 		}
 		i++;
 	}
-}
-
-void	put_texture_on_square(t_mlx *img, t_map *map, char *path_txt)
-{
-	int		**color;
-
-	color = create_txt(path_txt);
-	draw_one_texture(img, color, map->plr_x, map->plr_y);
-	free_tab_int(color);
 }
 
 void	get_map_xpm(t_mlx *img, t_map *map)

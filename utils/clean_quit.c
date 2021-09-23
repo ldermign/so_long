@@ -17,6 +17,8 @@ void	free_tab_int(int **tab)
 	int	i;
 
 	i = 0;
+	if (tab == NULL)
+		return ;
 	while (i < 32)
 	{
 		free(tab[i]);
@@ -33,9 +35,9 @@ void	ft_print_map(char **map, int red)
 	while (map[i])
 	{
 		if (i == red)
-			ft_printf("\x1b[0mLine [ %d ]\t==>\t\x1B[0;31m%s\n", i + 1, map[i]);
+			printf("\x1b[0mLine [ %d ]\t==>\t\x1B[0;31m%s\n", i + 1, map[i]);
 		else
-			ft_printf("\x1b[0mLine [ %d ]\t==>\t\x1B[1;30m%s\n", i + 1, map[i]);
+			printf("\x1b[0mLine [ %d ]\t==>\t\x1B[1;30m%s\n", i + 1, map[i]);
 		i++;
 	}
 }
@@ -43,11 +45,11 @@ void	ft_print_map(char **map, int red)
 int	quit(t_map *map, char *str_err, int i, int place)
 {
 	if (i <= 2)
-		ft_printf("Error\n");
+		printf("Error\n");
 	if (str_err != NULL)
-		ft_printf("%s", str_err);
+		printf("%s", str_err);
 	if ((i == 1 || i == 2) && str_err != NULL)
-		ft_printf("[ %d ].\n", place);
+		printf("[ %d ].\n", place);
 	if (i == 2)
 		ft_print_map(map->map, place - 1);
 	ft_free_tab(map->map);
@@ -57,29 +59,29 @@ int	quit(t_map *map, char *str_err, int i, int place)
 		free(s()->img);
 		free(s());
 	}
+	if (i < 5)
+		exit(0);
+	if (i == 6)
+	{
+		quit_properly_image(s()->img);
+	}
+	return (0);
+}
+
+void	quit_properly_image(t_mlx *img)
+{
+	if (img)
+	{
+		if (img->img)
+			mlx_destroy_image(img->mlx, img->img);
+		if (img->win)
+			mlx_destroy_window(img->mlx, img->win);
+		mlx_destroy_display(img->mlx);
+		free(img->mlx);
+	}
+	free(s()->img);
+	if (s()->map)
+		free(s()->map);
+	free(s());
 	exit (0);
-}
-
-void	free_mlx(t_mlx *img)
-{
-	free(img->mlx);
-	free(img->win);
-	free(img->img);
-	img->addr = NULL;
-	if (img->addr)
-		free(img->addr);
-	img->text = NULL;
-	if (img->text)
-		free(img->text);
-}
-
-void	close_image(t_mlx img)
-{
-	mlx_destroy_image(img.mlx, img.win);
-}
-
-void	free_image(t_mlx *img)
-{
-	close_image(*img);
-	free(img);
 }

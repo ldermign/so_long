@@ -19,7 +19,7 @@ void	afficher_map(t_map *map)
 	i = 0;
 	while (map->map[i])
 	{
-		ft_printf("--> [ %s ]\n", map->map[i]);
+		printf("--> [ %s ]\n", map->map[i]);
 		i++;
 	}
 }
@@ -37,11 +37,11 @@ void	afficher_couleurs(int **tab)
 		j = 0;
 		while (j < 32)
 		{
-			ft_printf("tab[%d][%d] = %d.\n", i, j, tab[i][j]);
+			printf("tab[%d][%d] = %d.\n", i, j, tab[i][j]);
 			j++;
 			ret++;
 		}
 		i++;
 	}
-	ft_printf("Il y a %d pixels de couleurs, soit 32*32 = %d\n", ret, 32 * 32);
+	printf("Il y a %d pixels de couleurs, soit 32*32 = %d\n", ret, 32 * 32);
 }

@@ -20,6 +20,7 @@
 # include <fcntl.h>
 # include <stdarg.h>
 # include <math.h>
+# include <stdio.h>
 # include "libft.h"
 # include "ft_printf.h"
 # include "get_next_line.h"
@@ -68,7 +69,6 @@ int		check_map(t_map *map);
 void	get_map_xpm(t_mlx *img, t_map *map);
 int     **create_txt(char *path_to_text);
 void	draw_one_texture(t_mlx *img, int **color_txt, int x, int y);
-void	put_texture_on_square(t_mlx *img, t_map *map, char *path_txt);
 void	put_pixel_on_img(t_mlx *img, int x, int y, int color);
 
 /*
@@ -106,9 +106,7 @@ int		get_g(int trgb);
 int		get_b(int trgb);
 int		quit(t_map *map, char *str_err, int i, int place);
 void	free_tab_int(int **tab);
-void	free_mlx(t_mlx *img);
-void	close_window();
-void	free_image(t_mlx *img);
+void	quit_properly_image(t_mlx *img);
 
 /*
 **	SUPPRIMER

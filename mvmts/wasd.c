@@ -12,10 +12,19 @@
 
 #include "so_long.h"
 
+void	put_texture_on_square(t_mlx *img, t_map *map, char *path_txt)
+{
+	int		**color;
+
+	color = create_txt(path_txt);
+	draw_one_texture(img, color, map->plr_x, map->plr_y);
+	free_tab_int(color);
+}
+
 void	move_left(t_mlx *img, t_map *map)
 {
 	if (map->map[map->plr_y][(map->plr_x - 1)] == 'E' && map->cltb == 0)
-		quit(s()->map, "Congrats ! You've made it !\n", 4, 0);
+		quit(s()->map, "Congrats ! You've made it !\n", 6, 0);
 	if (map->map[map->plr_y][(map->plr_x - 1)] == 'C')
 	{
 		map->cltb -= 1;
@@ -37,13 +46,13 @@ void	move_left(t_mlx *img, t_map *map)
 		map->left = 1;
 	}
 	s()->map->mvmts++;
-	ft_printf("%d movements.\n", s()->map->mvmts);
+	printf("%d movements.\n", s()->map->mvmts);
 }
 
 void	move_down(t_mlx *img, t_map *map)
 {
 	if (map->map[(map->plr_y + 1)][(map->plr_x)] == 'E' && map->cltb == 0)
-		quit(s()->map, "Congrats ! You've made it !\n", 4, 0);
+		quit(s()->map, "Congrats ! You've made it !\n", 6, 0);
 	if (map->map[(map->plr_y + 1)][(map->plr_x)] == 'C')
 	{
 		map->cltb -= 1;
@@ -65,13 +74,13 @@ void	move_down(t_mlx *img, t_map *map)
 		map->front = 1;
 	}
 	s()->map->mvmts++;
-	ft_printf("%d movements.\n", s()->map->mvmts);
+	printf("%d movements.\n", s()->map->mvmts);
 }
 
 void	move_right(t_mlx *img, t_map *map)
 {
 	if (map->map[map->plr_y][(map->plr_x + 1)] == 'E' && map->cltb == 0)
-		quit(s()->map, "Congrats ! You've made it !\n", 4, 0);
+		quit(s()->map, "Congrats ! You've made it !\n", 6, 0);
 	if (map->map[map->plr_y][(map->plr_x + 1)] == 'C')
 	{
 		map->cltb -= 1;
@@ -93,13 +102,13 @@ void	move_right(t_mlx *img, t_map *map)
 		map->right = 1;
 	}
 	s()->map->mvmts++;
-	ft_printf("%d movements.\n", s()->map->mvmts);
+	printf("%d movements.\n", s()->map->mvmts);
 }
 
 void	move_up(t_mlx *img, t_map *map)
 {
 	if (map->map[(map->plr_y - 1)][(map->plr_x)] == 'E' && map->cltb == 0)
-		quit(s()->map, "Congrats ! You've made it !\n", 4, 0);
+		quit(s()->map, "Congrats ! You've made it !\n", 6, 0);
 	if (map->map[(map->plr_y - 1)][(map->plr_x)] == 'C')
 	{
 		map->cltb -= 1;
@@ -121,5 +130,5 @@ void	move_up(t_mlx *img, t_map *map)
 		map->back = 1;
 	}
 	s()->map->mvmts++;
-	ft_printf("%d movements.\n", s()->map->mvmts);
+	printf("%d movements.\n", s()->map->mvmts);
 }
