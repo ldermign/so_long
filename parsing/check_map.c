@@ -47,7 +47,11 @@ int	check_around(t_map *map)
 	while (map->map[i])
 	{
 		if (map->size_line != (int)ft_strlen(map->map[i]))
+		{
+			ft_printf("ligne = [%s]\n", map->map[i]);
+			ft_printf("sizeline = %d, ft_strlen = %d\n", map->size_line, (int)ft_strlen(map->map[i]));
 			return (quit(map, "This is not a rectangle...\n", 0, 0));
+		}
 		if (map->map[i][0] != '1' || map->map[i][map->size_line - 1] != '1')
 			return (quit(map, "It's missing a wall line ", 2, i + 1));
 		i++;
