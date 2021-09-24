@@ -67,7 +67,7 @@ int	check_file_descriptor(t_map *map, char *av)
 	return (SUCCESS);
 }
 
-int	ft_check_name_map(char *arg)
+int	ft_check_extension_map(char *arg)
 {
 	char	*name_map;
 	int		len;
@@ -76,49 +76,23 @@ int	ft_check_name_map(char *arg)
 	len = ft_strlen(name_map);
 	if (name_map[len - 1] != 'r' || name_map[len - 2] != 'e'
 		|| name_map[len - 3] != 'b' || name_map[len - 4] != '.')
-	{
-		printf("Error\nWrong map\'s name.\n");
-		return (ERROR);
-	}
-	return (SUCCESS);
-}
-
-int	ft_check_arg(int ac, char **ag)
-{
-	if (ac == 1)
-	{
-		printf("Error\nIt's missing the map.\n");
-		exit (ERROR);
-	}
-	else if (ac == 2)
-	{
-		if (ft_check_name_map(ag[1]) == -1)
-			return (ERROR);
-	}
-	else
-	{
-		printf("Error\nToo many arguments.\n");
-		return (ERROR);
-	}
+		quit(s()->map, "Wrong map\'s name.\n", 0, 0);
 	return (SUCCESS);
 }
 
 int	all_check(int ac, char **av, t_map *map)
 {
-	if (map == NULL || ft_check_arg(ac, av) == -1)
-		return (ERROR);
+	if (ac == 1)
+		quit(s()->map, "It's missing the map.\n", 0, 0);
+	else if (ac == 2)
+		ft_check_extension_map(av[1]);
+	else
+		quit(s()->map, "Too many arguments.\n", 0, 0);
 	map->len_map = 0;
 	if (check_file_descriptor(map, av[1]) == -1)
-	{
-		printf("Error\nCheck map's name or extension.\n");
-		return (ERROR);
-	}
+		quit(s()->map, "Check map's name.\n", 0, 0);
 	if (recup_map(map, av[1]) == -1)
-	{
-		printf("Error\nBad malloc...\n");
-		return (ERROR);
-	}
-	if (check_map(map) == -1)
-		return (ERROR);
+		quit(s()->map, "Bad malloc in map's oppening...\n", 0, 0);
+	check_map(map);
 	return (SUCCESS);
 }

@@ -67,7 +67,7 @@ int		check_map(t_map *map);
 */
 
 void	get_map_xpm(t_mlx *img, t_map *map);
-int     **create_txt(char *path_to_text);
+int		**create_txt(char *path_to_text);
 void	draw_one_texture(t_mlx *img, int **color_txt, int x, int y);
 void	put_pixel_on_img(t_mlx *img, int x, int y, int color);
 
@@ -107,22 +107,5 @@ int		get_b(int trgb);
 int		quit(t_map *map, char *str_err, int i, int place);
 void	free_tab_int(int **tab);
 void	quit_properly_image(t_mlx *img);
-
-/*
-**	SUPPRIMER
-*/
-
-#define KRED  "\x1B[0;31m" // ROUGE
-#define KGRN  "\x1B[0;32m" // VERT
-#define KYEL  "\x1B[0;33m" // JAUNE
-#define KBLU  "\x1B[0;34m" // BLEU
-#define KMAG  "\x1B[0;35m" // MAGENTA
-#define KCYN  "\x1B[0;36m" // CYAN
-#define KWHT  "\x1B[0;37m" // BLANC
-#define KGRE  "\x1b[1;30m" // GRIS
-#define CLR_COLOR "\x1b[0m" // CLEAR COLOR
-void	afficher_map(t_map *map);
-void	afficher_couleurs(int **tab);
-#include <stdlib.h>
 
 #endif

@@ -14,7 +14,7 @@ NAME	=	so_long
 
 INCS	=	./includes/
 
-SRCS	=	./so_long.c \
+SRCS	=	./main/main.c \
 			./parsing/check_arg.c \
 			./parsing/check_map.c \
 			./parsing/utils_little.c \
@@ -24,20 +24,19 @@ SRCS	=	./so_long.c \
 			./mvmts/wasd.c \
 			./utils/clean_quit.c \
 			./utils/utils_get_colors.c \
-			./utils/utils_draw.c \
-			./supprimer.c
+			./utils/utils_draw.c
 
 OBJS	=	${SRCS:.c=.o}
 
 CC		=	clang
 
-CFLAGS	=	-Wall -Wextra -Werror -g3 -I ${INCS}
+CFLAGS	=	-Wall -Wextra -Werror -g3 -I ${INCS} -I ./mlx/
 
 MLFLGS	=	-L./mlx -lbsd -lmlx -lXext -lX11 -lm
 
 all:		${NAME}
 
-${NAME}:	${OBJS} ${INCS}
+${NAME}:	${OBJS} ${INCS} ./mlx/
 			${MAKE} -C ./libft
 			${MAKE} -C ./mlx
 			${CC} -o ${NAME} ${OBJS} ${CFLAGS} ${MLFLGS} libft/libft.a

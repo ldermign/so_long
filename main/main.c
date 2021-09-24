@@ -14,7 +14,7 @@
 
 t_s	*s(void)
 {
-	static t_s	*stc = NULL; 
+	static t_s	*stc = NULL;
 
 	if (!stc)
 	{
@@ -34,10 +34,7 @@ t_s	*s(void)
 int	key_press(int keycode)
 {
 	if (keycode == 65307)
-	{
-		quit(s()->map, "You pressed the escape button. Goodbye !\n", 5, 0);
-		quit_properly_image(s()->img);
-	}
+		quit(s()->map, "You pressed the escape button. Goodbye !\n", 3, 0);
 	if (keycode == 97 || keycode == 115 || keycode == 100 || keycode == 119)
 	{
 		if (keycode == 97
@@ -60,9 +57,8 @@ int	key_press(int keycode)
 
 int	close_cross(void)
 {
-	quit(s()->map, "You clicked on the cross. Goodbye !\n", 5, 0);
-	quit_properly_image(s()->img);
-	return 0;
+	quit(s()->map, "You clicked on the cross. Goodbye !\n", 3, 0);
+	return (0);
 }
 
 void	ft_init_img(t_map *map, t_mlx *img)
@@ -78,8 +74,7 @@ void	ft_init_img(t_map *map, t_mlx *img)
 
 int	main(int ac, char **av)
 {
-	if (all_check(ac, av, s()->map) == -1)
-		exit (0);
+	all_check(ac, av, s()->map);
 	ft_init_img(s()->map, s()->img);
 	s()->img->mlx = mlx_init();
 	s()->img->win = mlx_new_window(s()->img->mlx, s()->img->width,
@@ -88,7 +83,6 @@ int	main(int ac, char **av)
 		s()->img->height);
 	s()->img->addr = mlx_get_data_addr(s()->img->img, &s()->img->bpp,
 		&s()->img->size_line, &s()->img->endian);
-	afficher_map(s()->map);
 	get_map_xpm(s()->img, s()->map);
 	mlx_hook(s()->img->win, 2, 1L << 0, &key_press, (void *)0);
 	mlx_hook(s()->img->win, 17, 1L << 0, &close_cross, (void *)0);

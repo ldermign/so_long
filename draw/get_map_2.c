@@ -67,7 +67,7 @@ int	**get_color(t_mlx *txt)
 
 int	**create_txt(char *path_to_text)
 {
-	int	**color;
+	int		**color;
 	t_mlx	txt;
 
 	ft_bzero(&txt, sizeof(txt));

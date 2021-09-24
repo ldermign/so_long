@@ -35,9 +35,9 @@ void	ft_print_map(char **map, int red)
 	while (map[i])
 	{
 		if (i == red)
-			printf("\x1b[0mLine [ %d ]\t==>\t\x1B[0;31m%s\n", i + 1, map[i]);
+			printf("Line [ %d ]\t==>\t\x1B[0;31m%s\x1b[0m\n", i + 1, map[i]);
 		else
-			printf("\x1b[0mLine [ %d ]\t==>\t\x1B[1;30m%s\n", i + 1, map[i]);
+			printf("Line [ %d ]\t==>\t%s\n\x1b[0m", i + 1, map[i]);
 		i++;
 	}
 }
@@ -54,17 +54,13 @@ int	quit(t_map *map, char *str_err, int i, int place)
 		ft_print_map(map->map, place - 1);
 	ft_free_tab(map->map);
 	free(map);
-	if (i != 5)
+	if (i <= 2)
 	{
 		free(s()->img);
 		free(s());
+		exit (0);
 	}
-	if (i < 5)
-		exit(0);
-	if (i == 6)
-	{
-		quit_properly_image(s()->img);
-	}
+	quit_properly_image(s()->img);
 	return (0);
 }
 
@@ -80,8 +76,6 @@ void	quit_properly_image(t_mlx *img)
 		free(img->mlx);
 	}
 	free(s()->img);
-	if (s()->map)
-		free(s()->map);
 	free(s());
 	exit (0);
 }

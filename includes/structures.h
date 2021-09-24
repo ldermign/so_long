@@ -13,7 +13,7 @@
 #ifndef STRUCTURES_H
 # define STRUCTURES_H
 
-#include "so_long.h"
+# include "so_long.h"
 
 typedef struct s_map
 {
@@ -31,7 +31,7 @@ typedef struct s_map
 	int		mvmts;
 }	t_map;
 
-typedef struct  s_data
+typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
@@ -45,7 +45,7 @@ typedef struct  s_data
 	int		height;
 }	t_mlx;
 
-typedef struct  s_structure
+typedef struct s_structure
 {
 	t_map	*map;
 	t_mlx	*img;

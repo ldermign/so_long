@@ -89,8 +89,7 @@ int	check_map(t_map *map)
 	if (ft_strchr_tab_wrong_cara(map->map) != -1)
 		return (quit(map, "Something's wrong line ", 2,
 				ft_strchr_tab_wrong_cara(map->map)));
-	if (!check_around(map))
-		return (ERROR);
+	check_around(map);
 	if (how_many_player_exit_collec(map->map, 'C') < 2)
 		return (quit(map, "Not enough collectible.\n", 0, 0));
 	if (how_many_player_exit_collec(map->map, 'E') < 1)
