@@ -37,7 +37,7 @@ int	how_many_player_exit_collec(char **map, char c)
 		}
 		i++;
 	}
-	if (c == 'C' && tmp > 1)
+	if (c == 'C' && tmp >= 1)
 		s()->map->cltb = tmp;
 	return (tmp);
 }
