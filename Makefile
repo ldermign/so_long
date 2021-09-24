@@ -17,14 +17,12 @@ INCS	=	./includes/
 SRCS	=	./main/main.c \
 			./parsing/check_arg.c \
 			./parsing/check_map.c \
-			./parsing/utils_little.c \
-			./parsing/utils_little_2.c \
 			./draw/get_map.c \
 			./draw/get_map_2.c \
 			./mvmts/wasd.c \
-			./utils/clean_quit.c \
+			./utils/utils_parsing.c \
 			./utils/utils_get_colors.c \
-			./utils/utils_draw.c
+			./utils/clean_quit.c
 
 OBJS	=	${SRCS:.c=.o}
 

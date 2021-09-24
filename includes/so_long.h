@@ -69,7 +69,6 @@ int		check_map(t_map *map);
 void	get_map_xpm(t_mlx *img, t_map *map);
 int		**create_txt(char *path_to_text);
 void	draw_one_texture(t_mlx *img, int **color_txt, int x, int y);
-void	put_pixel_on_img(t_mlx *img, int x, int y, int color);
 
 /*
 **	MOVEMENTS
@@ -85,25 +84,24 @@ void	move_up(t_mlx *img, t_map *map);
 */
 
 int		max_line(char **map);
-int		ft_is_wall(int c);
-int		ft_is_player(int c);
-int		ft_is_space(int c);
-int		ft_is_collectible(int c);
-int		ft_is_exit(int c);
 int		ft_is_either(char c);
 int		how_many_player_exit_collec(char **map, char c);
 int		size_tab_char(char **tab);
 int		ft_strchr_tab_wrong_cara(char **tab);
 
 /*
-**	UTILS COLOR AND FREE
+**	UTILS COLOR
 */
 
-int		create_trgb(int t, int r, int g, int b);
 int		get_t(int trgb);
 int		get_r(int trgb);
 int		get_g(int trgb);
 int		get_b(int trgb);
+
+/*
+**	FREE
+*/
+
 int		quit(t_map *map, char *str_err, int i, int place);
 void	free_tab_int(int **tab);
 void	quit_properly_image(t_mlx *img);
