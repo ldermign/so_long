@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:40:30 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/15 15:52:18 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/27 15:28:06 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	get_floor_wall_ex_plr(t_mlx *img, char **map, int **color_txt, char c)
 				draw_one_texture(img, color_txt, j, i);
 				ret++;
 			}
-			if (ret == 1 &&c == 'P')
+			if (ret == 1 && c == 'P')
 				return ;
 			j++;
 		}

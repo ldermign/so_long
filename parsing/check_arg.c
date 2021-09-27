@@ -6,7 +6,7 @@
 /*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 17:55:07 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/12 12:49:17 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/09/27 15:29:30 by ldermign         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,15 +30,11 @@ int	recup_map(t_map *map, char *av)
 		ret = get_next_line(fd_map, &line);
 		if (ret <= 0)
 			break ;
-		map->map[i] = ft_strdup(line);
-		i++;
+		map->map[i++] = ft_strdup(line);
 		free(line);
 	}
 	if (line[0] != '\0')
-	{
-		map->map[i] = ft_strdup(line);
-		i++;
-	}
+		map->map[i++] = ft_strdup(line);
 	free(line);
 	map->map[i] = NULL;
 	close(fd_map);
