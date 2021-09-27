@@ -28,7 +28,7 @@ OBJS	=	${SRCS:.c=.o}
 
 CC		=	clang
 
-CFLAGS	=	-Wall -Wextra -Werror -g3 -fsanitize=address -I ${INCS} -I ./mlx/
+CFLAGS	=	-Wall -Wextra -Werror -g3 -I ${INCS} -I ./mlx/
 
 MLFLGS	=	-L./mlx -lbsd -lmlx -lXext -lX11 -lm
 

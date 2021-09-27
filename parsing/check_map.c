@@ -44,20 +44,10 @@ int	check_around(t_map *map)
 
 	i = 0;
 	map->size_line = max_line(map->map);
-	for (int j = 0 ; j < map->len_map ; j++)
-		ft_printf("laaaaaa %s\n", map->map[j]);
 	while (map->map[i])
 	{
-		// ft_printf("i = %d, len_map = %d\n", i, map->len_map);
-		// if (i + 1 == map->len_map)
-		// 	return (SUCCESS);
-		// ft_printf("map->map[i] = %s\n", map->map[i]);
 		if (map->size_line != (int)ft_strlen(map->map[i]))
-		{
-			// ft_printf("ligne = [%s]\n", map->map[i]);
-			// ft_printf("sizeline = %d, ft_strlen = %d\n", map->size_line, (int)ft_strlen(map->map[i]));
 			quit(map, "This is not a rectangle...\n", 0, 0);
-		}
 		if (map->map[i][0] != '1' || map->map[i][map->size_line - 1] != '1')
 			quit(map, "It's missing a wall line ", 2, i + 1);
 		i++;
@@ -91,9 +81,9 @@ void	get_pos_plr(t_map *map)
 int	check_map(t_map *map)
 {
 	if (size_tab_char(map->map) <= 2)
-		return (quit(map, "Map too small.n", 0, 0));
+		return (quit(map, "Map too small.\n", 0, 0));
 	if (how_many_player_exit_collec(map->map, 'P') != 1)
-		return (quit(map, "Not right number for player.\n", 0, 0));
+		return (quit(map, "Not right number of player.\n", 0, 0));
 	if (check_start_end_map(map) != -1)
 		return (quit(map, "Check line ", 2, check_start_end_map(map)));
 	if (ft_strchr_tab_wrong_cara(map->map) != -1)

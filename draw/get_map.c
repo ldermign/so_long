@@ -30,7 +30,7 @@ void	get_floor_wall_ex_plr(t_mlx *img, char **map, int **color_txt, char c)
 				draw_one_texture(img, color_txt, j, i);
 				ret++;
 			}
-			if (ret == 1 && (c == 'E' || c == 'P'))
+			if (ret == 1 &&c == 'P')
 				return ;
 			j++;
 		}
@@ -54,7 +54,7 @@ int	**put_one_collectible(void)
 
 	i = 0;
 	color = NULL;
-	ran_text = ft_random(16);
+	ran_text = ft_random(15);
 	while (which_txt[i].which_col != -1)
 	{
 		if (ran_text == which_txt[i].which_col)

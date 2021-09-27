@@ -34,9 +34,13 @@ int	recup_map(t_map *map, char *av)
 		i++;
 		free(line);
 	}
-	map->map[i] = ft_strdup(line);
+	if (line[0] != '\0')
+	{
+		map->map[i] = ft_strdup(line);
+		i++;
+	}
 	free(line);
-	map->map[++i] = NULL;
+	map->map[i] = NULL;
 	close(fd_map);
 	return (SUCCESS);
 }
@@ -61,7 +65,8 @@ int	check_file_descriptor(t_map *map, char *av)
 		map->len_map++;
 		free(line);
 	}
-	map->len_map++;
+	if (line[0] != '\0')
+		map->len_map++;
 	free(line);
 	close(fd_map);
 	return (SUCCESS);
