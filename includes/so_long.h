@@ -69,6 +69,7 @@ int		check_map(t_map *map);
 void	get_map_xpm(t_mlx *img, t_map *map);
 int		**create_txt(char *path_to_text);
 void	draw_one_texture(t_mlx *img, int **color_txt, int x, int y);
+void	put_texture_on_square(t_mlx *img, t_map *map, char *path_txt);
 
 /*
 **	MOVEMENTS

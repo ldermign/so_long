@@ -29,6 +29,7 @@ typedef struct s_map
 	int		left;
 	int		right;
 	int		mvmts;
+	char	*last_move;
 }	t_map;
 
 typedef struct s_data

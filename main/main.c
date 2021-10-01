@@ -72,6 +72,13 @@ void	ft_init_img(t_map *map, t_mlx *img)
 	map->mvmts = 0;
 }
 
+int	redraw(void)
+{
+	ft_printf("plrx = %d, plry = %d\n", s()->map->plr_x, s()->map->plr_y);
+	// put_texture_on_square(s()->img, s()->map, s()->map->last_move);
+	return (0);
+}
+
 int	main(int ac, char **av)
 {
 	all_check(ac, av, s()->map);
@@ -86,6 +93,7 @@ int	main(int ac, char **av)
 	get_map_xpm(s()->img, s()->map);
 	mlx_hook(s()->img->win, 2, 1L << 0, &key_press, (void *)0);
 	mlx_hook(s()->img->win, 17, 1L << 0, &close_cross, (void *)0);
+	mlx_hook(s()->img->win, 12, 1L << 15, redraw, (void *)0);
 	mlx_loop(s()->img->mlx);
 	exit (0);
 }
