@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft_fcts.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/18 16:26:06 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/18 16:43:31 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/10/04 15:14:59 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,9 @@ int					ft_isdigit(int c);
 int					ft_isprint(int c);
 char				*ft_itoa(int n);
 int					ft_len_int(int nbr);
+void				ft_lstadd_back(t_list **alst, t_list *new);
 void				ft_lstadd_front(t_list **alst, t_list *new);
+void				ft_lstdel_all(t_list *alst);
 void				ft_lstdelone(t_list *lst, void (*del)(void *));
 t_list				*ft_lstnew(void *content);
 int					ft_lstsize(t_list *lst);

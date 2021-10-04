@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   structures.h                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 15:15:04 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/16 10:19:35 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/10/04 15:06:16 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ typedef struct s_map
 	int		right;
 	int		mvmts;
 	char	*last_move;
+	int		text;
 }	t_map;
 
 typedef struct s_data
@@ -50,6 +51,7 @@ typedef struct s_structure
 {
 	t_map	*map;
 	t_mlx	*img;
+	t_list	*text;
 }	t_s;
 
 typedef struct s_colors

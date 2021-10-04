@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_quit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 15:19:17 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/16 10:17:43 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/10/04 15:31:07 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ int	quit(t_map *map, char *str_err, int i, int place)
 		ft_print_map(map->map, place - 1);
 	ft_free_tab(map->map);
 	free(map);
+	ft_lstdel_all(s()->text);
 	if (i <= 2)
 	{
 		free(s()->img);

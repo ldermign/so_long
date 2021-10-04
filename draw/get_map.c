@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/09 14:40:30 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/27 15:28:06 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/10/04 16:04:58 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,8 +59,8 @@ int	**put_one_collectible(void)
 	{
 		if (ran_text == which_txt[i].which_col)
 		{
+			ft_lstadd_back(&s()->text, ft_lstnew(which_txt[i].path));
 			color = which_txt[i].f(which_txt[i].path);
-			return (color);
 		}
 		i++;
 	}
@@ -91,6 +91,15 @@ void	get_collectibles(t_mlx *img, char **map)
 	}
 }
 
+void	afficher_liste(t_list *text)
+{
+	while (text != NULL)
+	{
+		ft_printf("[%s]\n", text->content);
+		text = text->next;
+	}
+}
+
 void	get_map_xpm(t_mlx *img, t_map *map)
 {
 	int		**color;
@@ -101,12 +110,14 @@ void	get_map_xpm(t_mlx *img, t_map *map)
 	color = create_txt(WALL);
 	get_floor_wall_ex_plr(img, map->map, color, '1');
 	free_tab_int(color);
-	get_collectibles(img, map->map);
 	color = create_txt(EXIT);
 	get_floor_wall_ex_plr(img, map->map, color, 'E');
 	free_tab_int(color);
 	color = create_txt(PLR_F1);
 	get_floor_wall_ex_plr(img, map->map, color, 'P');
 	free_tab_int(color);
+	get_collectibles(img, map->map);
+	map->last_move = PLR_F1;
 	mlx_put_image_to_window(img->mlx, img->win, img->img, 0, 0);
+	afficher_liste(s()->text);
 }

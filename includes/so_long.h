@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 14:14:37 by ldermign          #+#    #+#             */
-/*   Updated: 2021/09/16 10:21:34 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/10/04 15:52:39 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,15 +70,13 @@ void	get_map_xpm(t_mlx *img, t_map *map);
 int		**create_txt(char *path_to_text);
 void	draw_one_texture(t_mlx *img, int **color_txt, int x, int y);
 void	put_texture_on_square(t_mlx *img, t_map *map, char *path_txt);
+void	get_floor_wall_ex_plr(t_mlx *img, char **map, int **color_txt, char c);
 
 /*
 **	MOVEMENTS
 */
 
-void	move_left(t_mlx *img, t_map *map);
-void	move_down(t_mlx *img, t_map *map);
-void	move_right(t_mlx *img, t_map *map);
-void	move_up(t_mlx *img, t_map *map);
+void	move(t_mlx *img, t_map *map, int next_x, int next_y);
 
 /*
 **	UTILS CHECK
