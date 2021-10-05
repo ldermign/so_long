@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_quit.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: ldermign <ldermign@student.42.fr>          +#+  +:+       +#+        */
+/*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 15:19:17 by ldermign          #+#    #+#             */
-/*   Updated: 2021/10/05 14:19:20 by ldermign         ###   ########.fr       */
+/*   Updated: 2021/10/05 15:55:45 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,9 @@ void	ft_print_map(char **map, int red)
 	while (map[i])
 	{
 		if (i == red)
-			printf("Line [ %d ]\t==>\t\x1B[0;31m%s\x1b[0m\n", i + 1, map[i]);
+			printf("Line [ %d ]\t==>\t\x1B[0;31m[%s]\x1b[0m\n", i + 1, map[i]);
 		else
-			printf("Line [ %d ]\t==>\t%s\n\x1b[0m", i + 1, map[i]);
+			printf("Line [ %d ]\t==>\t[%s]\n\x1b[0m", i + 1, map[i]);
 		i++;
 	}
 }
