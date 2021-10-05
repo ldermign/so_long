@@ -6,7 +6,7 @@
 #    By: user42 <user42@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2021/08/12 14:16:35 by ldermign          #+#    #+#              #
-#    Updated: 2021/10/04 15:19:38 by user42           ###   ########.fr        #
+#    Updated: 2021/10/05 11:14:10 by user42           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,6 +15,7 @@ NAME	=	so_long
 INCS	=	./includes/
 
 SRCS	=	./main/main.c \
+			./main/init.c \
 			./parsing/check_arg.c \
 			./parsing/check_map.c \
 			./draw/get_map.c \

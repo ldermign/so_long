@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/09/15 15:41:41 by ldermign          #+#    #+#             */
-/*   Updated: 2021/10/04 16:04:31 by user42           ###   ########.fr       */
+/*   Updated: 2021/10/05 13:40:54 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,14 +37,13 @@ int	get_which_turn(int act_y, int act_x, int next_y, int next_x)
 		else
 			return ('R');
 	}
-	return ('0');
+	return ('1');
 }
 
 void	put_right_turn_for_texture2(t_mlx *img, t_map *map, char *txt)
 {
 	put_texture_on_square(img, map, txt);
 	map->last_move = txt;
-	ft_printf("map->last_move = %s\n", map->last_move);
 	if (map->text == 'B' && map->back == 1)
 		map->back = 0;
 	else if (map->text == 'B' && map->back == 0)
@@ -99,8 +98,8 @@ void	move(t_mlx *img, t_map *map, int next_y, int next_x)
 		put_texture_on_square(img, map, EXIT);
 	else
 		put_texture_on_square(img, map, FLOOR);
-	map->map[map->plr_y][map->plr_x] = '0';
-	map->map[next_y][(next_x)] = 'P';
+	if (map->map[next_y][next_y] != 'E')
+		map->map[next_y][(next_x)] = 'P';
 	map->plr_y = next_y;
 	map->plr_x = next_x;
 	put_right_turn_for_texture1(img, map);

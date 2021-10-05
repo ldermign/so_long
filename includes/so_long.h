@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/12 14:14:37 by ldermign          #+#    #+#             */
-/*   Updated: 2021/10/04 15:52:39 by user42           ###   ########.fr       */
+/*   Updated: 2021/10/05 11:20:14 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,13 @@
 
 int		all_check(int ac, char **av, t_map *map);
 int		check_map(t_map *map);
+
+/*
+**	INIT
+*/
+
+void	ft_init_img(t_map *map, t_mlx *img);
+t_s		*s(void);
 
 /*
 **  DRAW

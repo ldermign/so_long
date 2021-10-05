@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 15:15:04 by ldermign          #+#    #+#             */
-/*   Updated: 2021/10/04 15:06:16 by user42           ###   ########.fr       */
+/*   Updated: 2021/10/05 11:15:17 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ typedef struct s_structure
 {
 	t_map	*map;
 	t_mlx	*img;
-	t_list	*text;
 }	t_s;
 
 typedef struct s_colors
@@ -61,8 +60,6 @@ typedef struct s_colors
 	unsigned char	b;
 	unsigned char	t;
 }	t_color;
-
-t_s	*s(void);
 
 typedef struct s_texture_collectible
 {

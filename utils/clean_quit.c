@@ -6,7 +6,7 @@
 /*   By: user42 <user42@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/18 15:19:17 by ldermign          #+#    #+#             */
-/*   Updated: 2021/10/04 15:31:07 by user42           ###   ########.fr       */
+/*   Updated: 2021/10/05 11:09:47 by user42           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,6 @@ int	quit(t_map *map, char *str_err, int i, int place)
 		ft_print_map(map->map, place - 1);
 	ft_free_tab(map->map);
 	free(map);
-	ft_lstdel_all(s()->text);
 	if (i <= 2)
 	{
 		free(s()->img);
