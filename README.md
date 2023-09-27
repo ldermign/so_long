@@ -6,5 +6,4 @@ I tried to create my own design and I used my experience in 42's exam : the Pisc
 
 ## Some screenshots
 
-![My Image](images/so_long_little_screenshot.png)
-![My Image](images/so_long_big_screenshot.png)
+![My Image](images/so_long_little_screenshot.png) ![My Image](images/so_long_big_screenshot.png)
